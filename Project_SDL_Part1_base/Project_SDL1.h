@@ -4,7 +4,7 @@
 #pragma once
 
 #include <SDL.h>
-#include <SDL_image.h>
+#include "SDL2_image/include/SDL_image.h"
 #include <iostream>
 #include <map>
 #include <memory>
