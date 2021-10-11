@@ -4,7 +4,7 @@
 #pragma once
 
 #include <SDL.h>
-#include "SDL2_image/include/SDL_image.h"
+#include <SDL_image.h>
 #include <iostream>
 #include <map>
 #include <memory>
@@ -72,7 +72,7 @@ private:
 public:
   ground(SDL_Surface* window_surface_ptr); // todo: Ctor
   ~ground(){}; // todo: Dtor, again for clean up (if necessary)
-  void add_animal(); // todo: Add an animal // YOU CAN ADD YOUR ARGS BETWEEN BRACKETS
+  void add_animal(); // todo: Add an animal
   void update(); // todo: "refresh the screen": Move animals and draw them
   // Possibly other methods, depends on your implementation
 };
