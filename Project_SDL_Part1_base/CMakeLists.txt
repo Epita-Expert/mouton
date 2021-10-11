@@ -28,23 +28,10 @@ ELSE()
   message(STATUS "Building for Linux or Mac")
 
   find_package(SDL2 REQUIRED)
+  find_package(SDL2_IMAGE REQUIRED)
   include_directories(${SDL2_INCLUDE_DIRS})
-
-  IF(APPLE)
-    # sdl2_image - quick fix for macOS with standard homebrew install (brew install sdl2 && brew install sdl2_image)
-    SET(SDL2_IMAGE_LIBRARY "/opt/homebrew/lib/libSDL2_image.dylib")
-    SET(SDL2_IMAGE_INCLUDE_DIR "/opt/homebrew/include/SDL2")
-    INCLUDE(FindPackageHandleStandardArgs)
-    FIND_PACKAGE_HANDLE_STANDARD_ARGS(sdl2_image REQUIRED_VARS SDL2_IMAGE_LIBRARY SDL2_IMAGE_INCLUDE_DIR)
-    include_directories(${SDL2_IMAGE_INCLUDE_DIR})
-    set(CMAKE_CXX_FLAGS "-L/opt/homebrew/lib -I/opt/homebrew/include -lSDL2 -lSDL2_image")
-    # sdl2_image - end of quick fix
-  ELSE()
-    find_package(SDL2_image REQUIRED)
-    include_directories(${SDL2_IMAGE_INCLUDE_DIRS})
-  ENDIF()
-
+  include_directories(${SDL2_IMAGE_INCLUDE_DIRS})
 
   add_executable(SDL_part1 main.cpp Project_SDL1.cpp)
-  target_link_libraries(SDL_part1 ${SDL2_LIBRARIES} ${SDL2_image_LIBRARIES})
+  target_link_libraries(SDL_part1 ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES})
 ENDIF()
