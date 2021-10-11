@@ -6,22 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/home/minaro/GitHub/mouton/Project_SDL_Part1_base/Project_SDL1.cpp
-Project_SDL1.h
-/home/minaro/GitHub/mouton/Project_SDL_Part1_base/Project_SDL1.h
-algorithm
--
-cassert
--
-cstdlib
--
-numeric
--
-random
--
-string
--
-
 /home/minaro/GitHub/mouton/Project_SDL_Part1_base/Project_SDL1.h
 SDL.h
 -
