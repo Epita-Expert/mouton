@@ -12,8 +12,11 @@
 
 void init() {
   // Initialize SDL
+  std::cout << "Step 1" << std::endl;
   if (SDL_Init(SDL_INIT_TIMER | SDL_INIT_VIDEO) < 0)
     throw std::runtime_error("init():" + std::string(SDL_GetError()));
+  std::cout << "Step 2" << std::endl;
+
 
   // Initialize PNG loading
   int imgFlags = IMG_INIT_PNG;
@@ -21,6 +24,8 @@ void init() {
     throw std::runtime_error("init(): SDL_image could not initialize! "
                              "SDL_image Error: " +
                              std::string(IMG_GetError()));
+  std::cout << "Step 3" << std::endl;
+
 }
 
 namespace {

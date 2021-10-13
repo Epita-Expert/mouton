@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/minaro/GitHub/mouton/Project_SDL_Part1_base/Project_SDL1.h
+/home/minaro/GitHub/epita/mouton/Project_SDL_Part1_base/Project_SDL1.h
 SDL.h
 -
 SDL_image.h
@@ -22,9 +22,9 @@ optional
 vector
 -
 
-/home/minaro/GitHub/mouton/Project_SDL_Part1_base/main.cpp
+/home/minaro/GitHub/epita/mouton/Project_SDL_Part1_base/main.cpp
 Project_SDL1.h
-/home/minaro/GitHub/mouton/Project_SDL_Part1_base/Project_SDL1.h
+/home/minaro/GitHub/epita/mouton/Project_SDL_Part1_base/Project_SDL1.h
 stdio.h
 -
 string

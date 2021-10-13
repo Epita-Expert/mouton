@@ -1,4 +1,4 @@
-# Install script for directory: /home/minaro/GitHub/mouton/Project_SDL_Part1_base
+# Install script for directory: /home/minaro/GitHub/epita/mouton/Project_SDL_Part1_base
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

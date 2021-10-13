@@ -1,4 +1,4 @@
-# Install script for directory: /home/minaro/GitHub/mouton
+# Install script for directory: /home/minaro/GitHub/epita/mouton
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,7 +39,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/minaro/GitHub/mouton/Project_SDL_Part1_base/cmake_install.cmake")
+  include("/home/minaro/GitHub/epita/mouton/Project_SDL_Part1_base/cmake_install.cmake")
 
 endif()
 
@@ -51,5 +51,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/minaro/GitHub/mouton/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/minaro/GitHub/epita/mouton/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

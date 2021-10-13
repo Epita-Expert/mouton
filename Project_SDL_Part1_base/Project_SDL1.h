@@ -86,6 +86,7 @@ private:
   SDL_Event window_event_;
 
   // Other attributes here, for example an instance of ground
+  SDL_Renderer* renderer_ptr_;
 
 public:
   application(unsigned n_sheep, unsigned n_wolf); // Ctor
