@@ -30,32 +30,43 @@ private:
   SDL_Surface* image_ptr_; // The texture of the sheep (the loaded image), use
                            // load_surface_for
   // todo: Attribute(s) to define its position
+  SDL_Rect* rect_;
+
+  int vector [2];
+  int offset_y;
+  int offset_x;
+
 public:
-  animal(const std::string& file_path, SDL_Surface* window_surface_ptr){};
+  animal(const std::string& file_path, SDL_Surface* window_surface_ptr);
   // todo: The constructor has to load the sdl_surface that corresponds to the
   // texture
-  ~animal(){}; // todo: Use the destructor to release memory and "clean up
+  ~animal(); // todo: Use the destructor to release memory and "clean up
                // behind you"
 
-  void draw(){}; // todo: Draw the animal on the screen <-> window_surface_ptr.
+  void draw(); // todo: Draw the animal on the screen <-> window_surface_ptr.
                  // Note that this function is not virtual, it does not depend
                  // on the static type of the instance
 
-  virtual void move(){};// = 0; // todo: Animals move around, but in a different
+  virtual void move();// = 0; // todo: Animals move around, but in a different
                              // fashion depending on which type of animal
 };
 
 // Insert here:
 // class sheep, derived from animal
 class sheep : public animal {
+
+  sheep();// todo params Ctor
+  ~sheep(); // Dtor
   // todo
-  // Ctor
-  // Dtor
   // implement functions that are purely virtual in base class
 };
 
 // Insert here:
 // class wolf, derived from animal
+class wolf : public animal {
+  wolf();
+  ~wolf();
+};
 // Use only sheep at first. Once the application works
 // for sheep you can add the wolves
 
@@ -71,7 +82,7 @@ private:
 
 public:
   ground(SDL_Surface* window_surface_ptr); // todo: Ctor
-  ~ground(){}; // todo: Dtor, again for clean up (if necessary)
+  ~ground(); // todo: Dtor, again for clean up (if necessary)
   void add_animal(); // todo: Add an animal
   void update(); // todo: "refresh the screen": Move animals and draw them
   // Possibly other methods, depends on your implementation
@@ -87,6 +98,7 @@ private:
 
   // Other attributes here, for example an instance of ground
   SDL_Renderer* renderer_ptr_;
+  SDL_Texture* windows_texture_ptr_;
 
 public:
   application(unsigned n_sheep, unsigned n_wolf); // Ctor

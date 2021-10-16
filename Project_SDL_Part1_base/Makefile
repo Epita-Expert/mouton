@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/minaro/GitHub/epita/mouton
+CMAKE_SOURCE_DIR = /home/minaro/GitHub/epita/mouton/Project_SDL_Part1_base
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/minaro/GitHub/epita/mouton
+CMAKE_BINARY_DIR = /home/minaro/GitHub/epita/mouton/Project_SDL_Part1_base
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,14 +80,14 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/minaro/GitHub/epita/mouton && $(CMAKE_COMMAND) -E cmake_progress_start /home/minaro/GitHub/epita/mouton/CMakeFiles /home/minaro/GitHub/epita/mouton/Project_SDL_Part1_base/CMakeFiles/progress.marks
-	cd /home/minaro/GitHub/epita/mouton && $(MAKE) -f CMakeFiles/Makefile2 Project_SDL_Part1_base/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/minaro/GitHub/epita/mouton/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/minaro/GitHub/epita/mouton/Project_SDL_Part1_base/CMakeFiles /home/minaro/GitHub/epita/mouton/Project_SDL_Part1_base/CMakeFiles/progress.marks
+	$(MAKE) -f CMakeFiles/Makefile2 all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/minaro/GitHub/epita/mouton/Project_SDL_Part1_base/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/minaro/GitHub/epita/mouton && $(MAKE) -f CMakeFiles/Makefile2 Project_SDL_Part1_base/clean
+	$(MAKE) -f CMakeFiles/Makefile2 clean
 .PHONY : clean
 
 # The main clean target
@@ -97,32 +97,30 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/minaro/GitHub/epita/mouton && $(MAKE) -f CMakeFiles/Makefile2 Project_SDL_Part1_base/preinstall
+	$(MAKE) -f CMakeFiles/Makefile2 preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/minaro/GitHub/epita/mouton && $(MAKE) -f CMakeFiles/Makefile2 Project_SDL_Part1_base/preinstall
+	$(MAKE) -f CMakeFiles/Makefile2 preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/minaro/GitHub/epita/mouton && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
-# Convenience name for target.
-Project_SDL_Part1_base/CMakeFiles/SDL_part1.dir/rule:
-	cd /home/minaro/GitHub/epita/mouton && $(MAKE) -f CMakeFiles/Makefile2 Project_SDL_Part1_base/CMakeFiles/SDL_part1.dir/rule
-.PHONY : Project_SDL_Part1_base/CMakeFiles/SDL_part1.dir/rule
+#=============================================================================
+# Target rules for targets named SDL_part1
 
-# Convenience name for target.
-SDL_part1: Project_SDL_Part1_base/CMakeFiles/SDL_part1.dir/rule
-
+# Build rule for target.
+SDL_part1: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 SDL_part1
 .PHONY : SDL_part1
 
 # fast build rule for target.
 SDL_part1/fast:
-	cd /home/minaro/GitHub/epita/mouton && $(MAKE) -f Project_SDL_Part1_base/CMakeFiles/SDL_part1.dir/build.make Project_SDL_Part1_base/CMakeFiles/SDL_part1.dir/build
+	$(MAKE) -f CMakeFiles/SDL_part1.dir/build.make CMakeFiles/SDL_part1.dir/build
 .PHONY : SDL_part1/fast
 
 Project_SDL1.o: Project_SDL1.cpp.o
@@ -131,7 +129,7 @@ Project_SDL1.o: Project_SDL1.cpp.o
 
 # target to build an object file
 Project_SDL1.cpp.o:
-	cd /home/minaro/GitHub/epita/mouton && $(MAKE) -f Project_SDL_Part1_base/CMakeFiles/SDL_part1.dir/build.make Project_SDL_Part1_base/CMakeFiles/SDL_part1.dir/Project_SDL1.cpp.o
+	$(MAKE) -f CMakeFiles/SDL_part1.dir/build.make CMakeFiles/SDL_part1.dir/Project_SDL1.cpp.o
 .PHONY : Project_SDL1.cpp.o
 
 Project_SDL1.i: Project_SDL1.cpp.i
@@ -140,7 +138,7 @@ Project_SDL1.i: Project_SDL1.cpp.i
 
 # target to preprocess a source file
 Project_SDL1.cpp.i:
-	cd /home/minaro/GitHub/epita/mouton && $(MAKE) -f Project_SDL_Part1_base/CMakeFiles/SDL_part1.dir/build.make Project_SDL_Part1_base/CMakeFiles/SDL_part1.dir/Project_SDL1.cpp.i
+	$(MAKE) -f CMakeFiles/SDL_part1.dir/build.make CMakeFiles/SDL_part1.dir/Project_SDL1.cpp.i
 .PHONY : Project_SDL1.cpp.i
 
 Project_SDL1.s: Project_SDL1.cpp.s
@@ -149,7 +147,7 @@ Project_SDL1.s: Project_SDL1.cpp.s
 
 # target to generate assembly for a file
 Project_SDL1.cpp.s:
-	cd /home/minaro/GitHub/epita/mouton && $(MAKE) -f Project_SDL_Part1_base/CMakeFiles/SDL_part1.dir/build.make Project_SDL_Part1_base/CMakeFiles/SDL_part1.dir/Project_SDL1.cpp.s
+	$(MAKE) -f CMakeFiles/SDL_part1.dir/build.make CMakeFiles/SDL_part1.dir/Project_SDL1.cpp.s
 .PHONY : Project_SDL1.cpp.s
 
 main.o: main.cpp.o
@@ -158,7 +156,7 @@ main.o: main.cpp.o
 
 # target to build an object file
 main.cpp.o:
-	cd /home/minaro/GitHub/epita/mouton && $(MAKE) -f Project_SDL_Part1_base/CMakeFiles/SDL_part1.dir/build.make Project_SDL_Part1_base/CMakeFiles/SDL_part1.dir/main.cpp.o
+	$(MAKE) -f CMakeFiles/SDL_part1.dir/build.make CMakeFiles/SDL_part1.dir/main.cpp.o
 .PHONY : main.cpp.o
 
 main.i: main.cpp.i
@@ -167,7 +165,7 @@ main.i: main.cpp.i
 
 # target to preprocess a source file
 main.cpp.i:
-	cd /home/minaro/GitHub/epita/mouton && $(MAKE) -f Project_SDL_Part1_base/CMakeFiles/SDL_part1.dir/build.make Project_SDL_Part1_base/CMakeFiles/SDL_part1.dir/main.cpp.i
+	$(MAKE) -f CMakeFiles/SDL_part1.dir/build.make CMakeFiles/SDL_part1.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -176,7 +174,7 @@ main.s: main.cpp.s
 
 # target to generate assembly for a file
 main.cpp.s:
-	cd /home/minaro/GitHub/epita/mouton && $(MAKE) -f Project_SDL_Part1_base/CMakeFiles/SDL_part1.dir/build.make Project_SDL_Part1_base/CMakeFiles/SDL_part1.dir/main.cpp.s
+	$(MAKE) -f CMakeFiles/SDL_part1.dir/build.make CMakeFiles/SDL_part1.dir/main.cpp.s
 .PHONY : main.cpp.s
 
 # Help Target
@@ -205,6 +203,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/minaro/GitHub/epita/mouton && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

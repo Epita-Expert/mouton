@@ -32,11 +32,10 @@ namespace {
 // Defining a namespace without a name -> Anonymous workspace
 // Its purpose is to indicate to the compiler that everything
 // inside of it is UNIQUELY used within this source file.
+  SDL_Surface* load_surface_for(const std::string& path,
+                                SDL_Surface* window_surface_ptr) {
 
-SDL_Surface* load_surface_for(const std::string& path,
-                              SDL_Surface* window_surface_ptr) {
-
-  // Helper function to load a png for a specific surface
-  // See SDL_ConvertSurface
-}
+    // Helper function to load a png for a specific surface
+    // See SDL_ConvertSurface
+  }
 } // namespace
