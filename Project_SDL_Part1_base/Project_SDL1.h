@@ -30,11 +30,11 @@ private:
   SDL_Surface* image_ptr_; // The texture of the sheep (the loaded image), use
                            // load_surface_for
   // todo: Attribute(s) to define its position
-  SDL_Rect* rect_;
+  // SDL_Rect* rect_;
 
-  int vector [2];
-  int offset_y;
-  int offset_x;
+  // int vector [2];
+  // int offset_y;
+  // int offset_x;
 
 public:
   animal(const std::string& file_path, SDL_Surface* window_surface_ptr);
@@ -47,8 +47,9 @@ public:
                  // Note that this function is not virtual, it does not depend
                  // on the static type of the instance
 
-  virtual void move();// = 0; // todo: Animals move around, but in a different
+  // virtual void move();// = 0; // todo: Animals move around, but in a different
                              // fashion depending on which type of animal
+
 };
 
 // Insert here:

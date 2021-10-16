@@ -2,19 +2,18 @@
 #include <stdio.h>
 #include <string>
 
-// animal::animal(const std::string& file_path, SDL_Surface* window_surface_ptr)
-// {
-//   this->surface = IMG_Load(file_path.c_str());
-//   if (!this->surface)
-//     throw std::runtime_error("Could not load image");
-// }
+animal::animal(const std::string& file_path, SDL_Surface* window_surface_ptr) {
+  window_surface_ptr_ = window_surface_ptr;
+  image_ptr_ = IMG_Load(file_path.c_str());
+  if (!image_ptr_)
+    throw std::runtime_error("Could not load image");
+}
 
-// animal::draw() {
-//   auto rect = SDL_Rect{0, 0, 10, 900};
-//   if (SDL_BlitSurface(surf, NULL, window_surface_ptr, &rect))
-//     throw std::runtime_error("Could not apply texture.");
-//   SDL_UpdateWindowSurface(window_ptr);
-// }
+void animal::draw() {
+  if (SDL_BlitSurface(image_ptr_, NULL, window_surface_ptr_, NULL))
+    throw std::runtime_error("Could not apply texture.");
+  return;
+}
 
 // sheep::sheep() : animal() {}
 
@@ -50,7 +49,6 @@ application::application(unsigned n_sheep, unsigned n_wolf) {
 
 int application::loop(unsigned period) {
 
-
   // renderer_ptr_ = SDL_CreateRenderer(
   //     window_ptr, -1,
   //     SDL_RENDERER_ACCELERATED |
@@ -60,14 +58,22 @@ int application::loop(unsigned period) {
   //   throw std::runtime_error(std::string(SDL_GetError()));
   // SDL_SetRenderDrawColor(renderer_ptr_, 255, 0, 0, 255);
 
-  auto surf = IMG_Load("../media/herbe.png");
-  if (!surf)
-    throw std::runtime_error("Could not load image");
+  // auto surf = IMG_Load("../media/herbe.png");
+  // if (!surf)
+  //   throw std::runtime_error("Could not load image");
 
   auto rect = SDL_Rect{0, 0, frame_width, frame_height};
   SDL_FillRect(window_surface_ptr_, &rect, 0x0000FF91);
-  
-  // if (SDL_BlitSurface(surf, NULL, window_surface_ptr_, &rect))
+
+
+  animal sheep1("../media/sheep.png", window_surface_ptr_);
+  sheep1.draw();
+
+  // auto sheep_surf = IMG_Load("../media/sheep.png");
+  // if (!sheep_surf)
+  //   throw std::runtime_error("Could not load image");
+
+  // if (SDL_BlitSurface(sheep_surf, NULL, window_surface_ptr_, NULL))
   //   throw std::runtime_error("Could not apply texture.");
 
   // sheep sheep1('../media/sheep.png', )
@@ -92,12 +98,13 @@ int application::loop(unsigned period) {
 }
 
 application::~application() {
-  SDL_DestroyRenderer(renderer_ptr_);
+  // SDL_DestroyRenderer(renderer_ptr_);
   SDL_DestroyWindow(window_ptr_);
   IMG_Quit();
   SDL_Quit();
 }
 
+animal::~animal() { SDL_FreeSurface(image_ptr_); }
 int main(int argc, char* argv[]) {
 
   std::cout << "Starting up the application" << std::endl;
