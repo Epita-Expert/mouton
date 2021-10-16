@@ -7,32 +7,40 @@ animal::animal(const std::string& file_path, SDL_Surface* window_surface_ptr) {
   image_ptr_ = IMG_Load(file_path.c_str());
   if (!image_ptr_)
     throw std::runtime_error("Could not load image");
+  srand(time(NULL));
+
+  int speed = 0;
+  for (int count = 0; count < 2; count++) {
+    while (speed == 0) {
+      // speed = rand() % 2 - 1;
+      speed = -10;
+    }
+
+    vector[count] = speed;
+  }
+
+  std::cout << "Vector 1 is:" << vector[0] << std::endl;
+  std::cout << "Vector 2 is:" << vector[1] << std::endl;
 }
 
 void animal::draw() {
-  if (SDL_BlitSurface(image_ptr_, NULL, window_surface_ptr_, NULL))
+  auto rect = SDL_Rect{offset_x, offset_y, 10, 10};
+  if (SDL_BlitSurface(image_ptr_, NULL, window_surface_ptr_, &rect))
     throw std::runtime_error("Could not apply texture.");
   return;
 }
 
-// sheep::sheep() : animal() {}
-
-// sheep::move() {
-//   if (vector[0] == 0 && vector[1] == 0) { // If no vector
-//     vector[0] = rand() % 1;
-//     vector[1] = rand() % 1;
-//   }
-//   if (offset_x == 0 || offset_x == frame_width))
-//   {
-//     vector[0] = -vector[0];
-//   }
-//   if (offset_x == 0 || offset_x == frame_height))
-//   {
-//     vector[1] = -vector[1];
-//   }
-//   offset_x = vector[0];
-//   offset_y = vector[1];
-// }
+void animal::move() {
+  if (offset_x == 0 || offset_x == frame_width) {
+    vector[0] = -vector[0];
+  }
+  if (offset_x == 0 || offset_x == frame_height) {
+    vector[1] = -vector[1];
+  }
+  offset_x = vector[0] * 10;
+  offset_y = vector[1] * 10;
+  return;
+}
 
 application::application(unsigned n_sheep, unsigned n_wolf) {
   window_ptr_ =
@@ -65,7 +73,6 @@ int application::loop(unsigned period) {
   auto rect = SDL_Rect{0, 0, frame_width, frame_height};
   SDL_FillRect(window_surface_ptr_, &rect, 0x0000FF91);
 
-
   animal sheep1("../media/sheep.png", window_surface_ptr_);
   sheep1.draw();
 
@@ -80,6 +87,9 @@ int application::loop(unsigned period) {
 
   auto start = SDL_GetTicks();
   bool running = true;
+
+  int count = 0;
+
   while (running && (SDL_GetTicks() - start < period)) {
     while (SDL_PollEvent(&window_event_)) {
       switch (window_event_.type) {
@@ -90,7 +100,13 @@ int application::loop(unsigned period) {
         break;
       }
     }
+    sheep1.move();
+    sheep1.draw();
     SDL_UpdateWindowSurface(window_ptr_);
+    // Print every render the number of render
+    std::cout << "Window updated" << count << "times" << std::endl; 
+    count++;
+    SDL_Delay(1000/60); // Run the game at 60Hz
     // SDL_RenderClear(renderer_ptr_);
     // SDL_RenderPresent(renderer_ptr_);
   }
