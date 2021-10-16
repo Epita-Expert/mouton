@@ -57,33 +57,11 @@ application::application(unsigned n_sheep, unsigned n_wolf) {
 
 int application::loop(unsigned period) {
 
-  // renderer_ptr_ = SDL_CreateRenderer(
-  //     window_ptr, -1,
-  //     SDL_RENDERER_ACCELERATED |
-  //         SDL_RENDERER_PRESENTVSYNC); // SDL_RENDERER_ACCELERATED
-
-  // if (!renderer_ptr_)
-  //   throw std::runtime_error(std::string(SDL_GetError()));
-  // SDL_SetRenderDrawColor(renderer_ptr_, 255, 0, 0, 255);
-
-  // auto surf = IMG_Load("../media/herbe.png");
-  // if (!surf)
-  //   throw std::runtime_error("Could not load image");
-
   auto rect = SDL_Rect{0, 0, frame_width, frame_height};
   SDL_FillRect(window_surface_ptr_, &rect, 0x0000FF91);
 
   animal sheep1("../media/sheep.png", window_surface_ptr_);
   sheep1.draw();
-
-  // auto sheep_surf = IMG_Load("../media/sheep.png");
-  // if (!sheep_surf)
-  //   throw std::runtime_error("Could not load image");
-
-  // if (SDL_BlitSurface(sheep_surf, NULL, window_surface_ptr_, NULL))
-  //   throw std::runtime_error("Could not apply texture.");
-
-  // sheep sheep1('../media/sheep.png', )
 
   auto start = SDL_GetTicks();
   bool running = true;
@@ -107,8 +85,6 @@ int application::loop(unsigned period) {
     std::cout << "Window updated" << count << "times" << std::endl; 
     count++;
     SDL_Delay(1000/60); // Run the game at 60Hz
-    // SDL_RenderClear(renderer_ptr_);
-    // SDL_RenderPresent(renderer_ptr_);
   }
   return 0;
 }
