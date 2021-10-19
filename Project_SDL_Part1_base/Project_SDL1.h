@@ -25,12 +25,18 @@ void init();
 
 class animal {
 private:
-  SDL_Surface* window_surface_ptr_; // ptr to the surface on which we want the
-                                    // animal to be drawn, also non-owning
-  SDL_Surface* image_ptr_; // The texture of the sheep (the loaded image), use
-                           // load_surface_for
+  /**
+   * ptr to the surface on which we want the
+   * animal to be drawn, also non-owning
+   */
+  SDL_Surface* window_surface_ptr_;
+  /**
+   * The texture of the sheep (the loaded image), use
+   * load_surface_for
+   */
+  SDL_Surface* image_ptr_; 
   // todo: Attribute(s) to define its position
-  // SDL_Rect* rect_;
+  SDL_Rect* rect_;
 
   int vector [2];
   int offset_y;
@@ -52,10 +58,11 @@ public:
 
 };
 
-// Insert here:
-// class sheep, derived from animal
+/**
+ * Class sheep
+ * derived from animal
+**/
 class sheep : public animal {
-
   sheep();// todo params Ctor
   ~sheep(); // Dtor
   // todo
@@ -80,12 +87,15 @@ private:
 
   // Some attribute to store all the wolves and sheep
   // here
+  SDL_Rect* rect_;
+  Uint32 color;
+  std::vector<animal> animals;
 
 public:
   ground(SDL_Surface* window_surface_ptr); // todo: Ctor
   ~ground(); // todo: Dtor, again for clean up (if necessary)
-  void add_animal(); // todo: Add an animal
-  void update(); // todo: "refresh the screen": Move animals and draw them
+  void add_animal(animal animal); // todo: Add an animal
+  void update(SDL_Window* window_ptr_); // todo: "refresh the screen": Move animals and draw them
   // Possibly other methods, depends on your implementation
 };
 
