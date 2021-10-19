@@ -55,7 +55,7 @@ application::application(unsigned n_sheep, unsigned n_wolf) {
 
   // Loop to instance all the sheeps
   for (int i = 0; i < n_sheep; i++) {
-    animal * sheep = new animal("../media/sheep.png", this->window_surface_ptr_);
+    animal* sheep = new animal("../media/sheep.png", this->window_surface_ptr_);
     this->playing_ground->add_animal(sheep);
   }
 
@@ -70,41 +70,35 @@ application::~application() {
   SDL_FreeSurface(this->window_surface_ptr_);
 }
 
-//LOOP
+// LOOP
 int application::loop(unsigned period) {
+  auto start = SDL_GetTicks();
+  bool running = true;
 
-    //boolean to determine that the application should run ( true : running, false : stopping )
-    bool application_state_running = true;
+  int count = 0;
 
-    //While loop that symbolizes the Game Loop
-    while (application_state_running) {
-
-        //Control of events occuring during the game loop
-        while (SDL_PollEvent(&window_event_) > 0)
-        {
-            switch (window_event_.type)
-            {
-                //event => the close window button is triggered
-            case SDL_QUIT:
-                //getting out of the loop
-                application_state_running = false;
-                break;
-            }
-        }
-
-      //Time expiration of the app
-      if (SDL_GetTicks() >= period) {
-        application_state_running = false;
+  while (running && (SDL_GetTicks() - start < period)) {
+    while (SDL_PollEvent(&window_event_)) {
+      switch (window_event_.type) {
+      case SDL_QUIT:
+        running = false;
+        break;
+      case SDL_WINDOWEVENT:
+        break;
       }
-      //update the playing ground with the animals
-      this->playing_ground->update();
-
-      //update the window
-      SDL_UpdateWindowSurface(this->window_ptr_);
-
-      return 0;
     }
+    // update the playing ground with the animals
+    this->playing_ground->update();
 
+    // update the window
+    SDL_UpdateWindowSurface(this->window_ptr_);
+
+    // Print every render the number of render
+    std::cout << "Window updated" << count << "times" << std::endl;
+    count++;
+    SDL_Delay(1000 / 60); // Run the game at 60Hz
+  }
+  return 0;
 }
 
 namespace {
@@ -183,7 +177,7 @@ ground::~ground() {
 }
 
 // ADD_ANIMAL
-void ground::add_animal(animal * animal) {
+void ground::add_animal(animal* animal) {
   // Add the type animal to the dynamic array
   this->animals.push_back(animal);
 }
@@ -193,7 +187,7 @@ void ground::update() {
   // The ground gets repainted
   SDL_FillRect(this->window_surface_ptr_, NULL,
                SDL_MapRGB(this->window_surface_ptr_->format, 153, 255, 51));
-  for (animal * a : this->animals) {
+  for (animal* a : this->animals) {
     a->draw();
     a->move();
   }
