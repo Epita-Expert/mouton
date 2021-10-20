@@ -24,7 +24,7 @@
  *
  *  This is a general header that includes C language support.
  */
-
+#include <string.h>
 #ifndef SDL_stdinc_h_
 #define SDL_stdinc_h_
 
@@ -63,7 +63,6 @@
 # if !defined(STDC_HEADERS) && defined(HAVE_MEMORY_H)
 #  include <memory.h>
 # endif
-# include <string.h>
 #endif
 #ifdef HAVE_STRINGS_H
 # include <strings.h>

@@ -3,7 +3,6 @@ project ("Project_SDL_sub")
 
 IF(WIN32)
   message(STATUS "Building for windows")
-
   set(SDL2_INCLUDE_DIRS "SDL2/include")
   set(SDL2IMAGE_INCLUDE_DIRS "SDL2_image/include")
 
@@ -28,10 +27,24 @@ ELSE()
   message(STATUS "Building for Linux or Mac")
 
   find_package(SDL2 REQUIRED)
-  find_package(SDL2_IMAGE REQUIRED)
   include_directories(${SDL2_INCLUDE_DIRS})
-  include_directories(${SDL2_IMAGE_INCLUDE_DIRS})
+
+  IF(APPLE)
+    # sdl2_image - quick fix for macOS with standard homebrew install (brew install sdl2 && brew install sdl2_image)
+    set (CMAKE_CXX_STANDARD 11)
+    SET(SDL2_IMAGE_LIBRARY "/usr/local/Cellar/sdl2_image/2.0.5/lib/libSDL2_image.dylib")
+    SET(SDL2_IMAGE_INCLUDE_DIR "/usr/local/Cellar/sdl2_image/2.0.5/include/SDL2")
+    INCLUDE(FindPackageHandleStandardArgs)
+    FIND_PACKAGE_HANDLE_STANDARD_ARGS(sdl2_image REQUIRED_VARS SDL2_IMAGE_LIBRARY SDL2_IMAGE_INCLUDE_DIR)
+    include_directories(${SDL2_IMAGE_INCLUDE_DIR})
+    set(CMAKE_CXX_FLAGS "-L/usr/local/Cellar/sdl2_image/2.0.5/lib -I/usr/local/Cellar/sdl2_image/2.0.5/include -lSDL2 -lSDL2_image")
+    # sdl2_image - end of quick fix
+  ELSE()
+    find_package(SDL2_image REQUIRED)
+    include_directories(${SDL2_IMAGE_INCLUDE_DIRS})
+  ENDIF()
+
 
   add_executable(SDL_part1 main.cpp Project_SDL1.cpp)
-  target_link_libraries(SDL_part1 ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES})
+  target_link_libraries(SDL_part1 ${SDL2_LIBRARIES} ${SDL2_image_LIBRARIES})
 ENDIF()
