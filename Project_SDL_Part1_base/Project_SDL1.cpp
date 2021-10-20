@@ -59,6 +59,11 @@ application::application(unsigned n_sheep, unsigned n_wolf) {
     this->playing_ground->add_animal(sheep);
   }
 
+    for (int i = 0; i < n_wolf; i++) {
+    animal* wolf = new animal("../media/wolf.png", this->window_surface_ptr_);
+    this->playing_ground->add_animal(wolf);
+  }
+
   // Loop to instance all the wolves
 }
 
@@ -120,7 +125,9 @@ animal::animal(const std::string& file_path, SDL_Surface* window_surface_ptr) {
 
   // InitialiZe the window_surface_ptr_ in the class
   this->window_surface_ptr_ = window_surface_ptr;
-
+  this->direction_x = 1;
+  this->direction_y = 1;
+  this->speed = 1;
   // Load the texture of the animal
   this->image_ptr_ = IMG_Load(file_path.c_str());
   if (!this->image_ptr_)
@@ -156,7 +163,18 @@ void animal::draw() {
 // MOVE
 void animal::move() {
   // Move the sheep only on the right ( for now )
-  this->image_position.x = this->image_position.x + (frame_time * frame_rate);
+  // this->image_position.x = this->image_position.x + (frame_time * frame_rate);
+  if (this->image_position.x == 0 || this->image_position.x == frame_width - this->image_ptr_->w) {
+    this->direction_x = -this->direction_x;
+  }
+  if (this->image_position.y == 0 || this->image_position.y == frame_height - this->image_ptr_->h) {
+    this->direction_y = -this->direction_y;
+  }
+  
+  this->image_position.x += this->direction_x * this->speed;
+  this->image_position.y += this->direction_y * this->speed;
+
+
 }
 
 // CLASS GROUND

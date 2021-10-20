@@ -32,6 +32,12 @@ private:
                              // load_surface_for
     // todo: Attribute(s) to define its position
     SDL_Rect     image_position;
+
+    int direction_x; 
+    int direction_y;
+    int speed;
+
+
 public:
     animal(const std::string& file_path, SDL_Surface* window_surface_ptr);
     // todo: The constructor has to load the sdl_surface that corresponds to the
