@@ -23,8 +23,6 @@ void init() {
                              std::string(IMG_GetError()));
 }
 
-// CLASS APPLICATION
-// CONSTRUCTOR
 application::application(unsigned n_sheep, unsigned n_wolf) {
 
   // creation of the window
@@ -55,12 +53,12 @@ application::application(unsigned n_sheep, unsigned n_wolf) {
 
   // Loop to instance all the sheeps
   for (int i = 0; i < n_sheep; i++) {
-    animal* sheep = new animal("../media/sheep.png", this->window_surface_ptr_);
+    Animal* sheep = new Sheep(this->window_surface_ptr_);
     this->playing_ground->add_animal(sheep);
   }
 
-    for (int i = 0; i < n_wolf; i++) {
-    animal* wolf = new animal("../media/wolf.png", this->window_surface_ptr_);
+  for (int i = 0; i < n_wolf; i++) {
+    Animal* wolf = new Wolf(this->window_surface_ptr_);
     this->playing_ground->add_animal(wolf);
   }
 
@@ -116,69 +114,91 @@ SDL_Surface* load_surface_for(const std::string& path,
 
   // Helper function to load a png for a specific surface
   // See SDL_ConvertSurface
+  window_surface_ptr = IMG_Load(path.c_str());
+  return window_surface_ptr;
 }
 } // namespace
 
-// CLASS ANIMAL
-// CONSTRUCTOR
-animal::animal(const std::string& file_path, SDL_Surface* window_surface_ptr) {
+Sheep::Sheep(SDL_Surface* window_surface_ptr_)
+    : Animal("../media/sheep_sprite.png", window_surface_ptr_) {
+  this->speed = 1;
+}
+
+Wolf::Wolf(SDL_Surface* window_surface_ptr_)
+    : Animal("../media/wolf.png", window_surface_ptr_) {
+  this->speed = 2;
+}
+
+Animal::Animal(const std::string& file_path, SDL_Surface* window_surface_ptr) {
 
   // InitialiZe the window_surface_ptr_ in the class
   this->window_surface_ptr_ = window_surface_ptr;
-  this->direction_x = 1;
-  this->direction_y = 1;
-  this->speed = 1;
+  this->direction_x = this->arr[rand() % 2];
+  this->direction_y = this->arr[rand() % 2];
+
   // Load the texture of the animal
-  this->image_ptr_ = IMG_Load(file_path.c_str());
+  this->image_ptr_ = load_surface_for(file_path, this->image_ptr_);
   if (!this->image_ptr_)
     throw std::runtime_error("Could not load image");
 
   // Give the animal an intial postion
-  this->image_position.x =
-      rand() % frame_width; // in the range of 0 to the frame_width
-  this->image_position.y =
-      rand() % frame_height; // in the range of 0 to the frame_height
+  // in the range of 0 to the frame_width
+  this->image_position.x = rand() % frame_width - this->image_ptr_->w;
+  // in the range of 0 to the frame_height
+  this->image_position.y = rand() % frame_height - this->image_ptr_->h;
   // Give the size of the rectangle
-  this->image_position.w =
-      this->image_ptr_->w; // the width of the rectangle will be the same as
-                           // width of the image
-  this->image_position.h =
-      this->image_ptr_->h; // the height of the rectangle will be the same as
-                           // height of the image
+  // the width of the rectangle will be the same as width of the image
+  this->image_position.w = this->image_ptr_->w;
+  // the height of the rectangle will be the same as height of the image
+  this->image_position.h = this->image_ptr_->h;
 }
 
-// DESTRUCTOR
-animal::~animal() {
+Animal::~Animal() {
   // Free the surface that has the texture for animals
   SDL_FreeSurface(this->image_ptr_);
 }
 
-// DRAW
-void animal::draw() {
+void Animal::draw() {
   // Put the animal's image surface on the window surface
-  SDL_BlitSurface(this->image_ptr_, NULL, this->window_surface_ptr_,
+  SDL_Rect crop, positionFond;
+  crop.x = 0;
+  crop.y = 0;
+  crop.h = 60;
+  crop.w = 60;
+
+  SDL_BlitSurface(this->image_ptr_, &crop, this->window_surface_ptr_,
                   &image_position);
 }
 
-// MOVE
-void animal::move() {
+void Animal::move() {
   // Move the sheep only on the right ( for now )
-  // this->image_position.x = this->image_position.x + (frame_time * frame_rate);
-  if (this->image_position.x == 0 || this->image_position.x == frame_width - this->image_ptr_->w) {
+  // this->image_position.x = this->image_position.x + (frame_time *
+  // frame_rate);
+  if (this->image_position.x == 0 ||
+      this->image_position.x == frame_width - this->image_ptr_->w) {
     this->direction_x = -this->direction_x;
   }
-  if (this->image_position.y == 0 || this->image_position.y == frame_height - this->image_ptr_->h) {
+  if (this->image_position.y == 0 ||
+      this->image_position.y == frame_height - this->image_ptr_->h) {
     this->direction_y = -this->direction_y;
   }
-  
   this->image_position.x += this->direction_x * this->speed;
   this->image_position.y += this->direction_y * this->speed;
-
-
 }
 
-// CLASS GROUND
-// CONSTRUCTOR
+void Sheep::move() {
+  if (this->image_position.x == 0 ||
+      this->image_position.x == frame_width - this->image_ptr_->w) {
+    this->direction_x = -this->direction_x;
+  }
+  if (this->image_position.y == 0 ||
+      this->image_position.y == frame_height - this->image_ptr_->h) {
+    this->direction_y = -this->direction_y;
+  }
+  this->image_position.x += this->direction_x * this->speed;
+  this->image_position.y += this->direction_y * this->speed;
+}
+
 ground::ground(SDL_Surface* window_surface_ptr) {
 
   // InitialiZe the window_surface_ptr_ in the class
@@ -187,25 +207,22 @@ ground::ground(SDL_Surface* window_surface_ptr) {
   this->animals = {};
 }
 
-// DESTRUCTOR
 ground::~ground() {
   // Free the dynamic table array
   this->animals.clear();
   // delete &animals;
 }
 
-// ADD_ANIMAL
-void ground::add_animal(animal* animal) {
+void ground::add_animal(Animal* animal) {
   // Add the type animal to the dynamic array
   this->animals.push_back(animal);
 }
 
-// GROUND
 void ground::update() {
   // The ground gets repainted
   SDL_FillRect(this->window_surface_ptr_, NULL,
                SDL_MapRGB(this->window_surface_ptr_->format, 153, 255, 51));
-  for (animal* a : this->animals) {
+  for (Animal* a : this->animals) {
     a->draw();
     a->move();
   }
