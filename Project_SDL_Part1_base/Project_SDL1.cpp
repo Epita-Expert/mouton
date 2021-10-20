@@ -23,15 +23,6 @@ void init() {
                              std::string(IMG_GetError()));
 }
 
-
-Sheep::Sheep(SDL_Surface* window_surface_ptr_)
-    : Animal("../media/sheep_sprite.png", window_surface_ptr_) {}
-
-Wolf::Wolf(SDL_Surface* window_surface_ptr_)
-    : Animal("../media/wolf.png", window_surface_ptr_) {}
-
-// CLASS APPLICATION
-// CONSTRUCTOR
 application::application(unsigned n_sheep, unsigned n_wolf) {
 
   // creation of the window
@@ -128,14 +119,22 @@ SDL_Surface* load_surface_for(const std::string& path,
 }
 } // namespace
 
+Sheep::Sheep(SDL_Surface* window_surface_ptr_)
+    : Animal("../media/sheep_sprite.png", window_surface_ptr_) {
+  this->speed = 1;
+}
+
+Wolf::Wolf(SDL_Surface* window_surface_ptr_)
+    : Animal("../media/wolf.png", window_surface_ptr_) {
+  this->speed = 2;
+}
 
 Animal::Animal(const std::string& file_path, SDL_Surface* window_surface_ptr) {
 
   // InitialiZe the window_surface_ptr_ in the class
   this->window_surface_ptr_ = window_surface_ptr;
-  this->direction_x = 1;
-  this->direction_y = 1;
-  this->speed = 1;
+  this->direction_x = this->arr[rand() % 2];
+  this->direction_y = this->arr[rand() % 2];
 
   // Load the texture of the animal
   this->image_ptr_ = load_surface_for(file_path, this->image_ptr_);
@@ -175,6 +174,19 @@ void Animal::move() {
   // Move the sheep only on the right ( for now )
   // this->image_position.x = this->image_position.x + (frame_time *
   // frame_rate);
+  if (this->image_position.x == 0 ||
+      this->image_position.x == frame_width - this->image_ptr_->w) {
+    this->direction_x = -this->direction_x;
+  }
+  if (this->image_position.y == 0 ||
+      this->image_position.y == frame_height - this->image_ptr_->h) {
+    this->direction_y = -this->direction_y;
+  }
+  this->image_position.x += this->direction_x * this->speed;
+  this->image_position.y += this->direction_y * this->speed;
+}
+
+void Sheep::move() {
   if (this->image_position.x == 0 ||
       this->image_position.x == frame_width - this->image_ptr_->w) {
     this->direction_x = -this->direction_x;

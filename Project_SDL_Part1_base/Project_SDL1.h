@@ -27,14 +27,16 @@ class Animal {
 private:
   SDL_Surface* window_surface_ptr_; // ptr to the surface on which we want the
                                     // animal to be drawn, also non-owning
+
+protected:
   SDL_Surface* image_ptr_; // The texture of the sheep (the loaded image), use
                            // load_surface_for
   // todo: Attribute(s) to define its position
   SDL_Rect image_position;
-
   int direction_x;
   int direction_y;
   int speed;
+  int arr[2] = {-1, 1};
 
 public:
   /**
@@ -70,6 +72,7 @@ public:
    */
   ~Sheep();
   // implement functions that are purely virtual in base class
+  void move();
 };
 
 // Insert here:
