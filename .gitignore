@@ -31,9 +31,10 @@
 *.out
 *.app
 
-Project_SDL_Part1_base/SDL_part1
 
 # Media
 *.mp4
 
 
+Project_SDL_Part1_base/SDL_part1
+Project_SDL_Part1_base/CMakeLists.txt
