@@ -120,13 +120,13 @@ SDL_Surface* load_surface_for(const std::string& path,
 } // namespace
 
 Sheep::Sheep(SDL_Surface* window_surface_ptr_)
-    : Animal("../media/sheep_sprite.png", window_surface_ptr_) {
+    : Animal("../media/sheep.png", window_surface_ptr_) {
   this->speed = 1;
 }
 
 Wolf::Wolf(SDL_Surface* window_surface_ptr_)
     : Animal("../media/wolf.png", window_surface_ptr_) {
-  this->speed = 2;
+  this->speed = 1.5;
 }
 
 Animal::Animal(const std::string& file_path, SDL_Surface* window_surface_ptr) {
@@ -163,8 +163,8 @@ void Animal::draw() {
   SDL_Rect crop, positionFond;
   crop.x = 0;
   crop.y = 0;
-  crop.h = 60;
-  crop.w = 60;
+  crop.h = this->image_ptr_->h;
+  crop.w = this->image_ptr_->w;
 
   SDL_BlitSurface(this->image_ptr_, &crop, this->window_surface_ptr_,
                   &image_position);

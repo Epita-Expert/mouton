@@ -35,7 +35,7 @@ protected:
   SDL_Rect image_position;
   int direction_x;
   int direction_y;
-  int speed;
+  double speed;
   int arr[2] = {-1, 1};
 
 public:
