@@ -99,7 +99,7 @@ int application::loop(unsigned period) {
     // Print every render the number of render
     std::cout << "Window updated" << count << "times" << std::endl;
     count++;
-    SDL_Delay(1000 / 60); // Run the game at 60Hz
+    SDL_Delay(1000 / frame_rate); // Run the game at 60Hz
   }
   return 0;
 }
