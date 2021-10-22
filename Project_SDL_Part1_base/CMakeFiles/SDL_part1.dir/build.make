@@ -70,32 +70,107 @@ CMakeFiles/SDL_part1.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/SDL_part1.dir/main.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/minaro/GitHub/epita/mouton/Project_SDL_Part1_base/main.cpp -o CMakeFiles/SDL_part1.dir/main.cpp.s
 
-CMakeFiles/SDL_part1.dir/Project_SDL1.cpp.o: CMakeFiles/SDL_part1.dir/flags.make
-CMakeFiles/SDL_part1.dir/Project_SDL1.cpp.o: Project_SDL1.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/minaro/GitHub/epita/mouton/Project_SDL_Part1_base/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/SDL_part1.dir/Project_SDL1.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/SDL_part1.dir/Project_SDL1.cpp.o -c /home/minaro/GitHub/epita/mouton/Project_SDL_Part1_base/Project_SDL1.cpp
+CMakeFiles/SDL_part1.dir/application.cpp.o: CMakeFiles/SDL_part1.dir/flags.make
+CMakeFiles/SDL_part1.dir/application.cpp.o: application.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/minaro/GitHub/epita/mouton/Project_SDL_Part1_base/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/SDL_part1.dir/application.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/SDL_part1.dir/application.cpp.o -c /home/minaro/GitHub/epita/mouton/Project_SDL_Part1_base/application.cpp
 
-CMakeFiles/SDL_part1.dir/Project_SDL1.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/SDL_part1.dir/Project_SDL1.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/minaro/GitHub/epita/mouton/Project_SDL_Part1_base/Project_SDL1.cpp > CMakeFiles/SDL_part1.dir/Project_SDL1.cpp.i
+CMakeFiles/SDL_part1.dir/application.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/SDL_part1.dir/application.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/minaro/GitHub/epita/mouton/Project_SDL_Part1_base/application.cpp > CMakeFiles/SDL_part1.dir/application.cpp.i
 
-CMakeFiles/SDL_part1.dir/Project_SDL1.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/SDL_part1.dir/Project_SDL1.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/minaro/GitHub/epita/mouton/Project_SDL_Part1_base/Project_SDL1.cpp -o CMakeFiles/SDL_part1.dir/Project_SDL1.cpp.s
+CMakeFiles/SDL_part1.dir/application.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/SDL_part1.dir/application.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/minaro/GitHub/epita/mouton/Project_SDL_Part1_base/application.cpp -o CMakeFiles/SDL_part1.dir/application.cpp.s
+
+CMakeFiles/SDL_part1.dir/animal.cpp.o: CMakeFiles/SDL_part1.dir/flags.make
+CMakeFiles/SDL_part1.dir/animal.cpp.o: animal.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/minaro/GitHub/epita/mouton/Project_SDL_Part1_base/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/SDL_part1.dir/animal.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/SDL_part1.dir/animal.cpp.o -c /home/minaro/GitHub/epita/mouton/Project_SDL_Part1_base/animal.cpp
+
+CMakeFiles/SDL_part1.dir/animal.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/SDL_part1.dir/animal.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/minaro/GitHub/epita/mouton/Project_SDL_Part1_base/animal.cpp > CMakeFiles/SDL_part1.dir/animal.cpp.i
+
+CMakeFiles/SDL_part1.dir/animal.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/SDL_part1.dir/animal.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/minaro/GitHub/epita/mouton/Project_SDL_Part1_base/animal.cpp -o CMakeFiles/SDL_part1.dir/animal.cpp.s
+
+CMakeFiles/SDL_part1.dir/helper.cpp.o: CMakeFiles/SDL_part1.dir/flags.make
+CMakeFiles/SDL_part1.dir/helper.cpp.o: helper.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/minaro/GitHub/epita/mouton/Project_SDL_Part1_base/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/SDL_part1.dir/helper.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/SDL_part1.dir/helper.cpp.o -c /home/minaro/GitHub/epita/mouton/Project_SDL_Part1_base/helper.cpp
+
+CMakeFiles/SDL_part1.dir/helper.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/SDL_part1.dir/helper.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/minaro/GitHub/epita/mouton/Project_SDL_Part1_base/helper.cpp > CMakeFiles/SDL_part1.dir/helper.cpp.i
+
+CMakeFiles/SDL_part1.dir/helper.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/SDL_part1.dir/helper.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/minaro/GitHub/epita/mouton/Project_SDL_Part1_base/helper.cpp -o CMakeFiles/SDL_part1.dir/helper.cpp.s
+
+CMakeFiles/SDL_part1.dir/wolf.cpp.o: CMakeFiles/SDL_part1.dir/flags.make
+CMakeFiles/SDL_part1.dir/wolf.cpp.o: wolf.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/minaro/GitHub/epita/mouton/Project_SDL_Part1_base/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/SDL_part1.dir/wolf.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/SDL_part1.dir/wolf.cpp.o -c /home/minaro/GitHub/epita/mouton/Project_SDL_Part1_base/wolf.cpp
+
+CMakeFiles/SDL_part1.dir/wolf.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/SDL_part1.dir/wolf.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/minaro/GitHub/epita/mouton/Project_SDL_Part1_base/wolf.cpp > CMakeFiles/SDL_part1.dir/wolf.cpp.i
+
+CMakeFiles/SDL_part1.dir/wolf.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/SDL_part1.dir/wolf.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/minaro/GitHub/epita/mouton/Project_SDL_Part1_base/wolf.cpp -o CMakeFiles/SDL_part1.dir/wolf.cpp.s
+
+CMakeFiles/SDL_part1.dir/sheep.cpp.o: CMakeFiles/SDL_part1.dir/flags.make
+CMakeFiles/SDL_part1.dir/sheep.cpp.o: sheep.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/minaro/GitHub/epita/mouton/Project_SDL_Part1_base/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/SDL_part1.dir/sheep.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/SDL_part1.dir/sheep.cpp.o -c /home/minaro/GitHub/epita/mouton/Project_SDL_Part1_base/sheep.cpp
+
+CMakeFiles/SDL_part1.dir/sheep.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/SDL_part1.dir/sheep.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/minaro/GitHub/epita/mouton/Project_SDL_Part1_base/sheep.cpp > CMakeFiles/SDL_part1.dir/sheep.cpp.i
+
+CMakeFiles/SDL_part1.dir/sheep.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/SDL_part1.dir/sheep.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/minaro/GitHub/epita/mouton/Project_SDL_Part1_base/sheep.cpp -o CMakeFiles/SDL_part1.dir/sheep.cpp.s
+
+CMakeFiles/SDL_part1.dir/ground.cpp.o: CMakeFiles/SDL_part1.dir/flags.make
+CMakeFiles/SDL_part1.dir/ground.cpp.o: ground.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/minaro/GitHub/epita/mouton/Project_SDL_Part1_base/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/SDL_part1.dir/ground.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/SDL_part1.dir/ground.cpp.o -c /home/minaro/GitHub/epita/mouton/Project_SDL_Part1_base/ground.cpp
+
+CMakeFiles/SDL_part1.dir/ground.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/SDL_part1.dir/ground.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/minaro/GitHub/epita/mouton/Project_SDL_Part1_base/ground.cpp > CMakeFiles/SDL_part1.dir/ground.cpp.i
+
+CMakeFiles/SDL_part1.dir/ground.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/SDL_part1.dir/ground.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/minaro/GitHub/epita/mouton/Project_SDL_Part1_base/ground.cpp -o CMakeFiles/SDL_part1.dir/ground.cpp.s
 
 # Object files for target SDL_part1
 SDL_part1_OBJECTS = \
 "CMakeFiles/SDL_part1.dir/main.cpp.o" \
-"CMakeFiles/SDL_part1.dir/Project_SDL1.cpp.o"
+"CMakeFiles/SDL_part1.dir/application.cpp.o" \
+"CMakeFiles/SDL_part1.dir/animal.cpp.o" \
+"CMakeFiles/SDL_part1.dir/helper.cpp.o" \
+"CMakeFiles/SDL_part1.dir/wolf.cpp.o" \
+"CMakeFiles/SDL_part1.dir/sheep.cpp.o" \
+"CMakeFiles/SDL_part1.dir/ground.cpp.o"
 
 # External object files for target SDL_part1
 SDL_part1_EXTERNAL_OBJECTS =
 
 SDL_part1: CMakeFiles/SDL_part1.dir/main.cpp.o
-SDL_part1: CMakeFiles/SDL_part1.dir/Project_SDL1.cpp.o
+SDL_part1: CMakeFiles/SDL_part1.dir/application.cpp.o
+SDL_part1: CMakeFiles/SDL_part1.dir/animal.cpp.o
+SDL_part1: CMakeFiles/SDL_part1.dir/helper.cpp.o
+SDL_part1: CMakeFiles/SDL_part1.dir/wolf.cpp.o
+SDL_part1: CMakeFiles/SDL_part1.dir/sheep.cpp.o
+SDL_part1: CMakeFiles/SDL_part1.dir/ground.cpp.o
 SDL_part1: CMakeFiles/SDL_part1.dir/build.make
 SDL_part1: CMakeFiles/SDL_part1.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/minaro/GitHub/epita/mouton/Project_SDL_Part1_base/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable SDL_part1"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/minaro/GitHub/epita/mouton/Project_SDL_Part1_base/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable SDL_part1"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/SDL_part1.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

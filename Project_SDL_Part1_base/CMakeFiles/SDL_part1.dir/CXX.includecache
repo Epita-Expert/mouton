@@ -6,25 +6,15 @@
 
 #IncludeRegexTransform: 
 
-/home/minaro/GitHub/epita/mouton/Project_SDL_Part1_base/Project_SDL1.cpp
-Project_SDL1.h
-/home/minaro/GitHub/epita/mouton/Project_SDL_Part1_base/Project_SDL1.h
-algorithm
--
-cassert
--
-cstdlib
--
-numeric
--
-random
--
-stdio.h
--
-string
--
+/home/minaro/GitHub/epita/mouton/Project_SDL_Part1_base/animal.cpp
+game.h
+/home/minaro/GitHub/epita/mouton/Project_SDL_Part1_base/game.h
 
-/home/minaro/GitHub/epita/mouton/Project_SDL_Part1_base/Project_SDL1.h
+/home/minaro/GitHub/epita/mouton/Project_SDL_Part1_base/application.cpp
+game.h
+/home/minaro/GitHub/epita/mouton/Project_SDL_Part1_base/game.h
+
+/home/minaro/GitHub/epita/mouton/Project_SDL_Part1_base/game.h
 SDL.h
 -
 SDL_image.h
@@ -39,6 +29,30 @@ optional
 -
 vector
 -
+
+/home/minaro/GitHub/epita/mouton/Project_SDL_Part1_base/ground.cpp
+game.h
+/home/minaro/GitHub/epita/mouton/Project_SDL_Part1_base/game.h
+
+/home/minaro/GitHub/epita/mouton/Project_SDL_Part1_base/helper.cpp
+game.h
+/home/minaro/GitHub/epita/mouton/Project_SDL_Part1_base/game.h
+
+/home/minaro/GitHub/epita/mouton/Project_SDL_Part1_base/main.cpp
+game.h
+/home/minaro/GitHub/epita/mouton/Project_SDL_Part1_base/game.h
+stdio.h
+-
+string
+-
+
+/home/minaro/GitHub/epita/mouton/Project_SDL_Part1_base/sheep.cpp
+game.h
+/home/minaro/GitHub/epita/mouton/Project_SDL_Part1_base/game.h
+
+/home/minaro/GitHub/epita/mouton/Project_SDL_Part1_base/wolf.cpp
+game.h
+/home/minaro/GitHub/epita/mouton/Project_SDL_Part1_base/game.h
 
 /usr/include/SDL2/SDL.h
 SDL_main.h

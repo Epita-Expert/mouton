@@ -123,32 +123,113 @@ SDL_part1/fast:
 	$(MAKE) -f CMakeFiles/SDL_part1.dir/build.make CMakeFiles/SDL_part1.dir/build
 .PHONY : SDL_part1/fast
 
-Project_SDL1.o: Project_SDL1.cpp.o
+animal.o: animal.cpp.o
 
-.PHONY : Project_SDL1.o
+.PHONY : animal.o
 
 # target to build an object file
-Project_SDL1.cpp.o:
-	$(MAKE) -f CMakeFiles/SDL_part1.dir/build.make CMakeFiles/SDL_part1.dir/Project_SDL1.cpp.o
-.PHONY : Project_SDL1.cpp.o
+animal.cpp.o:
+	$(MAKE) -f CMakeFiles/SDL_part1.dir/build.make CMakeFiles/SDL_part1.dir/animal.cpp.o
+.PHONY : animal.cpp.o
 
-Project_SDL1.i: Project_SDL1.cpp.i
+animal.i: animal.cpp.i
 
-.PHONY : Project_SDL1.i
+.PHONY : animal.i
 
 # target to preprocess a source file
-Project_SDL1.cpp.i:
-	$(MAKE) -f CMakeFiles/SDL_part1.dir/build.make CMakeFiles/SDL_part1.dir/Project_SDL1.cpp.i
-.PHONY : Project_SDL1.cpp.i
+animal.cpp.i:
+	$(MAKE) -f CMakeFiles/SDL_part1.dir/build.make CMakeFiles/SDL_part1.dir/animal.cpp.i
+.PHONY : animal.cpp.i
 
-Project_SDL1.s: Project_SDL1.cpp.s
+animal.s: animal.cpp.s
 
-.PHONY : Project_SDL1.s
+.PHONY : animal.s
 
 # target to generate assembly for a file
-Project_SDL1.cpp.s:
-	$(MAKE) -f CMakeFiles/SDL_part1.dir/build.make CMakeFiles/SDL_part1.dir/Project_SDL1.cpp.s
-.PHONY : Project_SDL1.cpp.s
+animal.cpp.s:
+	$(MAKE) -f CMakeFiles/SDL_part1.dir/build.make CMakeFiles/SDL_part1.dir/animal.cpp.s
+.PHONY : animal.cpp.s
+
+application.o: application.cpp.o
+
+.PHONY : application.o
+
+# target to build an object file
+application.cpp.o:
+	$(MAKE) -f CMakeFiles/SDL_part1.dir/build.make CMakeFiles/SDL_part1.dir/application.cpp.o
+.PHONY : application.cpp.o
+
+application.i: application.cpp.i
+
+.PHONY : application.i
+
+# target to preprocess a source file
+application.cpp.i:
+	$(MAKE) -f CMakeFiles/SDL_part1.dir/build.make CMakeFiles/SDL_part1.dir/application.cpp.i
+.PHONY : application.cpp.i
+
+application.s: application.cpp.s
+
+.PHONY : application.s
+
+# target to generate assembly for a file
+application.cpp.s:
+	$(MAKE) -f CMakeFiles/SDL_part1.dir/build.make CMakeFiles/SDL_part1.dir/application.cpp.s
+.PHONY : application.cpp.s
+
+ground.o: ground.cpp.o
+
+.PHONY : ground.o
+
+# target to build an object file
+ground.cpp.o:
+	$(MAKE) -f CMakeFiles/SDL_part1.dir/build.make CMakeFiles/SDL_part1.dir/ground.cpp.o
+.PHONY : ground.cpp.o
+
+ground.i: ground.cpp.i
+
+.PHONY : ground.i
+
+# target to preprocess a source file
+ground.cpp.i:
+	$(MAKE) -f CMakeFiles/SDL_part1.dir/build.make CMakeFiles/SDL_part1.dir/ground.cpp.i
+.PHONY : ground.cpp.i
+
+ground.s: ground.cpp.s
+
+.PHONY : ground.s
+
+# target to generate assembly for a file
+ground.cpp.s:
+	$(MAKE) -f CMakeFiles/SDL_part1.dir/build.make CMakeFiles/SDL_part1.dir/ground.cpp.s
+.PHONY : ground.cpp.s
+
+helper.o: helper.cpp.o
+
+.PHONY : helper.o
+
+# target to build an object file
+helper.cpp.o:
+	$(MAKE) -f CMakeFiles/SDL_part1.dir/build.make CMakeFiles/SDL_part1.dir/helper.cpp.o
+.PHONY : helper.cpp.o
+
+helper.i: helper.cpp.i
+
+.PHONY : helper.i
+
+# target to preprocess a source file
+helper.cpp.i:
+	$(MAKE) -f CMakeFiles/SDL_part1.dir/build.make CMakeFiles/SDL_part1.dir/helper.cpp.i
+.PHONY : helper.cpp.i
+
+helper.s: helper.cpp.s
+
+.PHONY : helper.s
+
+# target to generate assembly for a file
+helper.cpp.s:
+	$(MAKE) -f CMakeFiles/SDL_part1.dir/build.make CMakeFiles/SDL_part1.dir/helper.cpp.s
+.PHONY : helper.cpp.s
 
 main.o: main.cpp.o
 
@@ -177,6 +258,60 @@ main.cpp.s:
 	$(MAKE) -f CMakeFiles/SDL_part1.dir/build.make CMakeFiles/SDL_part1.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+sheep.o: sheep.cpp.o
+
+.PHONY : sheep.o
+
+# target to build an object file
+sheep.cpp.o:
+	$(MAKE) -f CMakeFiles/SDL_part1.dir/build.make CMakeFiles/SDL_part1.dir/sheep.cpp.o
+.PHONY : sheep.cpp.o
+
+sheep.i: sheep.cpp.i
+
+.PHONY : sheep.i
+
+# target to preprocess a source file
+sheep.cpp.i:
+	$(MAKE) -f CMakeFiles/SDL_part1.dir/build.make CMakeFiles/SDL_part1.dir/sheep.cpp.i
+.PHONY : sheep.cpp.i
+
+sheep.s: sheep.cpp.s
+
+.PHONY : sheep.s
+
+# target to generate assembly for a file
+sheep.cpp.s:
+	$(MAKE) -f CMakeFiles/SDL_part1.dir/build.make CMakeFiles/SDL_part1.dir/sheep.cpp.s
+.PHONY : sheep.cpp.s
+
+wolf.o: wolf.cpp.o
+
+.PHONY : wolf.o
+
+# target to build an object file
+wolf.cpp.o:
+	$(MAKE) -f CMakeFiles/SDL_part1.dir/build.make CMakeFiles/SDL_part1.dir/wolf.cpp.o
+.PHONY : wolf.cpp.o
+
+wolf.i: wolf.cpp.i
+
+.PHONY : wolf.i
+
+# target to preprocess a source file
+wolf.cpp.i:
+	$(MAKE) -f CMakeFiles/SDL_part1.dir/build.make CMakeFiles/SDL_part1.dir/wolf.cpp.i
+.PHONY : wolf.cpp.i
+
+wolf.s: wolf.cpp.s
+
+.PHONY : wolf.s
+
+# target to generate assembly for a file
+wolf.cpp.s:
+	$(MAKE) -f CMakeFiles/SDL_part1.dir/build.make CMakeFiles/SDL_part1.dir/wolf.cpp.s
+.PHONY : wolf.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -186,12 +321,27 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... SDL_part1"
-	@echo "... Project_SDL1.o"
-	@echo "... Project_SDL1.i"
-	@echo "... Project_SDL1.s"
+	@echo "... animal.o"
+	@echo "... animal.i"
+	@echo "... animal.s"
+	@echo "... application.o"
+	@echo "... application.i"
+	@echo "... application.s"
+	@echo "... ground.o"
+	@echo "... ground.i"
+	@echo "... ground.s"
+	@echo "... helper.o"
+	@echo "... helper.i"
+	@echo "... helper.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... sheep.o"
+	@echo "... sheep.i"
+	@echo "... sheep.s"
+	@echo "... wolf.o"
+	@echo "... wolf.i"
+	@echo "... wolf.s"
 .PHONY : help
 
 
