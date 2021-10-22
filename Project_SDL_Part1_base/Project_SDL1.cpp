@@ -97,7 +97,7 @@ int application::loop(unsigned period) {
     SDL_UpdateWindowSurface(this->window_ptr_);
 
     // Print every render the number of render
-    std::cout << "Window updated" << count << "times" << std::endl;
+    // std::cout << "Window updated " << count << "times" << std::endl;
     count++;
     SDL_Delay(1000 / frame_rate); // Run the game at 60Hz
   }
@@ -126,7 +126,7 @@ Sheep::Sheep(SDL_Surface* window_surface_ptr_)
 
 Wolf::Wolf(SDL_Surface* window_surface_ptr_)
     : Animal("../media/wolf.png", window_surface_ptr_) {
-  this->speed = 1.5;
+  this->speed = 2.3;
 }
 
 Animal::Animal(const std::string& file_path, SDL_Surface* window_surface_ptr) {
@@ -143,9 +143,17 @@ Animal::Animal(const std::string& file_path, SDL_Surface* window_surface_ptr) {
 
   // Give the animal an intial postion
   // in the range of 0 to the frame_width
-  this->image_position.x = rand() % frame_width - this->image_ptr_->w;
+  this->image_position.x =
+      rand() % (frame_width - frame_boundary - this->image_ptr_->w) +
+      frame_boundary;
+
+  std::cout << "Position X: " << this->image_position.x << std::endl;
+
   // in the range of 0 to the frame_height
-  this->image_position.y = rand() % frame_height - this->image_ptr_->h;
+  this->image_position.y =
+      rand() % (frame_height - frame_boundary - this->image_ptr_->h) +
+      frame_boundary;
+  std::cout << "Position Y: " << this->image_position.y << std::endl;
   // Give the size of the rectangle
   // the width of the rectangle will be the same as width of the image
   this->image_position.w = this->image_ptr_->w;
@@ -174,30 +182,30 @@ void Animal::move() {
   // Move the sheep only on the right ( for now )
   // this->image_position.x = this->image_position.x + (frame_time *
   // frame_rate);
-  if (this->image_position.x == 0 ||
-      this->image_position.x == frame_width - this->image_ptr_->w) {
+  int max_height = frame_height - frame_boundary - this->image_ptr_->h;
+  int max_width = frame_width - frame_boundary - this->image_ptr_->w;
+
+  if (this->image_position.x <= frame_boundary) {
     this->direction_x = -this->direction_x;
+    this->image_position.x = frame_boundary;
   }
-  if (this->image_position.y == 0 ||
-      this->image_position.y == frame_height - this->image_ptr_->h) {
+  if (this->image_position.x >= max_width) {
+    this->direction_x = -this->direction_x;
+    this->image_position.x = max_width;
+  }
+  if (this->image_position.y <= frame_boundary) {
     this->direction_y = -this->direction_y;
+    this->image_position.y = frame_boundary;
+  }
+
+  if (this->image_position.y >= max_height) {
+    this->direction_y = -this->direction_y;
+    this->image_position.y = max_height;
   }
   this->image_position.x += this->direction_x * this->speed;
   this->image_position.y += this->direction_y * this->speed;
 }
 
-void Sheep::move() {
-  if (this->image_position.x == 0 ||
-      this->image_position.x == frame_width - this->image_ptr_->w) {
-    this->direction_x = -this->direction_x;
-  }
-  if (this->image_position.y == 0 ||
-      this->image_position.y == frame_height - this->image_ptr_->h) {
-    this->direction_y = -this->direction_y;
-  }
-  this->image_position.x += this->direction_x * this->speed;
-  this->image_position.y += this->direction_y * this->speed;
-}
 
 ground::ground(SDL_Surface* window_surface_ptr) {
 

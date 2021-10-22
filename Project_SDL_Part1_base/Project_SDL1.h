@@ -72,7 +72,6 @@ public:
    */
   ~Sheep();
   // implement functions that are purely virtual in base class
-  void move();
 };
 
 // Insert here:
