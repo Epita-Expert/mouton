@@ -147,13 +147,10 @@ Animal::Animal(const std::string& file_path, SDL_Surface* window_surface_ptr) {
       rand() % (frame_width - frame_boundary - this->image_ptr_->w) +
       frame_boundary;
 
-  std::cout << "Position X: " << this->image_position.x << std::endl;
-
   // in the range of 0 to the frame_height
   this->image_position.y =
       rand() % (frame_height - frame_boundary - this->image_ptr_->h) +
       frame_boundary;
-  std::cout << "Position Y: " << this->image_position.y << std::endl;
   // Give the size of the rectangle
   // the width of the rectangle will be the same as width of the image
   this->image_position.w = this->image_ptr_->w;
@@ -179,9 +176,6 @@ void Animal::draw() {
 }
 
 void Animal::move() {
-  // Move the sheep only on the right ( for now )
-  // this->image_position.x = this->image_position.x + (frame_time *
-  // frame_rate);
   int max_height = frame_height - frame_boundary - this->image_ptr_->h;
   int max_width = frame_width - frame_boundary - this->image_ptr_->w;
 
