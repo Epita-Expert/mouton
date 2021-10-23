@@ -37,7 +37,6 @@
 
 # build !
 Project_SDL_Part1_base/SDL_part1
-Project_SDL_Part1_base/CMakeLists.txt
 Project_SDL_Part1_base/CMakeCache.txt
 Project_SDL_Part1_base/CMakeFiles/*
 Project_SDL_Part1_base/Makefile
