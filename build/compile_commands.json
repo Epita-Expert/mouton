@@ -1,0 +1,43 @@
+[
+{
+  "directory": "/home/minaro/GitHub/epita/mouton/build",
+  "command": "/bin/clang++-10   -I/usr/include/SDL2 -I/usr/include/SDL2_image  -g   -std=gnu++17 -o Project_SDL_Part1_base/CMakeFiles/SDL_part1.dir/main.cpp.o -c /home/minaro/GitHub/epita/mouton/Project_SDL_Part1_base/main.cpp",
+  "file": "/home/minaro/GitHub/epita/mouton/Project_SDL_Part1_base/main.cpp"
+},
+
+{
+  "directory": "/home/minaro/GitHub/epita/mouton/build",
+  "command": "/bin/clang++-10   -I/usr/include/SDL2 -I/usr/include/SDL2_image  -g   -std=gnu++17 -o Project_SDL_Part1_base/CMakeFiles/SDL_part1.dir/application.cpp.o -c /home/minaro/GitHub/epita/mouton/Project_SDL_Part1_base/application.cpp",
+  "file": "/home/minaro/GitHub/epita/mouton/Project_SDL_Part1_base/application.cpp"
+},
+
+{
+  "directory": "/home/minaro/GitHub/epita/mouton/build",
+  "command": "/bin/clang++-10   -I/usr/include/SDL2 -I/usr/include/SDL2_image  -g   -std=gnu++17 -o Project_SDL_Part1_base/CMakeFiles/SDL_part1.dir/ground.cpp.o -c /home/minaro/GitHub/epita/mouton/Project_SDL_Part1_base/ground.cpp",
+  "file": "/home/minaro/GitHub/epita/mouton/Project_SDL_Part1_base/ground.cpp"
+},
+
+{
+  "directory": "/home/minaro/GitHub/epita/mouton/build",
+  "command": "/bin/clang++-10   -I/usr/include/SDL2 -I/usr/include/SDL2_image  -g   -std=gnu++17 -o Project_SDL_Part1_base/CMakeFiles/SDL_part1.dir/animal.cpp.o -c /home/minaro/GitHub/epita/mouton/Project_SDL_Part1_base/animal.cpp",
+  "file": "/home/minaro/GitHub/epita/mouton/Project_SDL_Part1_base/animal.cpp"
+},
+
+{
+  "directory": "/home/minaro/GitHub/epita/mouton/build",
+  "command": "/bin/clang++-10   -I/usr/include/SDL2 -I/usr/include/SDL2_image  -g   -std=gnu++17 -o Project_SDL_Part1_base/CMakeFiles/SDL_part1.dir/sheep.cpp.o -c /home/minaro/GitHub/epita/mouton/Project_SDL_Part1_base/sheep.cpp",
+  "file": "/home/minaro/GitHub/epita/mouton/Project_SDL_Part1_base/sheep.cpp"
+},
+
+{
+  "directory": "/home/minaro/GitHub/epita/mouton/build",
+  "command": "/bin/clang++-10   -I/usr/include/SDL2 -I/usr/include/SDL2_image  -g   -std=gnu++17 -o Project_SDL_Part1_base/CMakeFiles/SDL_part1.dir/wolf.cpp.o -c /home/minaro/GitHub/epita/mouton/Project_SDL_Part1_base/wolf.cpp",
+  "file": "/home/minaro/GitHub/epita/mouton/Project_SDL_Part1_base/wolf.cpp"
+},
+
+{
+  "directory": "/home/minaro/GitHub/epita/mouton/build",
+  "command": "/bin/clang++-10   -I/usr/include/SDL2 -I/usr/include/SDL2_image  -g   -std=gnu++17 -o Project_SDL_Part1_base/CMakeFiles/SDL_part1.dir/helper.cpp.o -c /home/minaro/GitHub/epita/mouton/Project_SDL_Part1_base/helper.cpp",
+  "file": "/home/minaro/GitHub/epita/mouton/Project_SDL_Part1_base/helper.cpp"
+}
+]
