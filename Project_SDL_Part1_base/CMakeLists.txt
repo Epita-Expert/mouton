@@ -43,10 +43,7 @@ ELSE()
   ELSE()
     find_package(SDL2_image REQUIRED)
     include_directories(${SDL2_IMAGE_INCLUDE_DIRS})
-    add_executable(SDL_part1 main.cpp application.cpp ground.cpp animal.cpp sheep.cpp wolf.cpp helper.cpp)
-    target_link_libraries(SDL_part1 ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES})
   ENDIF()
-
-
-
+  add_executable(SDL_part1 main.cpp application.cpp ground.cpp animal.cpp sheep.cpp wolf.cpp helper.cpp)
+  target_link_libraries(SDL_part1 ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES})
 ENDIF()
