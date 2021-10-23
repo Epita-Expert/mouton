@@ -1,5 +1,0 @@
-/home/minaro/GitHub/epita/mouton/CMakeFiles/rebuild_cache.dir
-/home/minaro/GitHub/epita/mouton/CMakeFiles/edit_cache.dir
-/home/minaro/GitHub/epita/mouton/Project_SDL_Part1_base/CMakeFiles/rebuild_cache.dir
-/home/minaro/GitHub/epita/mouton/Project_SDL_Part1_base/CMakeFiles/edit_cache.dir
-/home/minaro/GitHub/epita/mouton/Project_SDL_Part1_base/CMakeFiles/SDL_part1.dir
