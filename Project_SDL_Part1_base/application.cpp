@@ -57,7 +57,7 @@ int application::loop(unsigned period) {
 
   int count = 0;
 
-  while (running && (SDL_GetTicks() - start < period)) {
+  while (running && (SDL_GetTicks() - start < period * 1000)) {
     while (SDL_PollEvent(&window_event_)) {
       switch (window_event_.type) {
       case SDL_QUIT:

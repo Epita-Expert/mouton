@@ -33,8 +33,8 @@ protected:
                            // load_surface_for
   // todo: Attribute(s) to define its position
   SDL_Rect image_position;
-  int direction_x;
-  int direction_y;
+  float direction_x;
+  float direction_y;
   double speed;
   int arr[2] = {-1, 1};
 
