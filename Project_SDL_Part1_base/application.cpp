@@ -30,13 +30,15 @@ application::application(unsigned n_sheep, unsigned n_wolf) {
 
   // Loop to instance all the sheeps
   for (int i = 0; i < n_sheep; i++) {
-    Animal* sheep = new Sheep(this->window_surface_ptr_);
-    this->playing_ground->add_animal(sheep);
+    // std::unique_ptr<Animal> sheep(new Sheep(this->window_surface_ptr_));
+    std::unique_ptr<Animal> sheep = std::make_unique<Sheep>(this->window_surface_ptr_);
+    this->playing_ground->add_animal(std::move(sheep));
   }
 
   for (int i = 0; i < n_wolf; i++) {
-    Animal* wolf = new Wolf(this->window_surface_ptr_);
-    this->playing_ground->add_animal(wolf);
+    // std::unique_ptr<Animal> wolf(new Wolf(this->window_surface_ptr_));
+    std::unique_ptr<Animal> wolf = std::make_unique<Wolf>(this->window_surface_ptr_);
+    this->playing_ground->add_animal(std::move(wolf));
   }
 
   // Loop to instance all the wolves

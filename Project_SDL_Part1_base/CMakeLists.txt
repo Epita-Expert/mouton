@@ -1,4 +1,4 @@
-cmake_minimum_required (VERSION 3.0)
+cmake_minimum_required (VERSION 3.14.0)
 project ("Project_SDL_sub")
 
 IF(WIN32)
@@ -32,7 +32,7 @@ ELSE()
 
   IF(APPLE)
     # sdl2_image - quick fix for macOS with standard homebrew install (brew install sdl2 && brew install sdl2_image)
-    set (CMAKE_CXX_STANDARD 11)
+    set (CMAKE_CXX_STANDARD 14)
     SET(SDL2_IMAGE_LIBRARY "/usr/local/Cellar/sdl2_image/2.0.5/lib/libSDL2_image.dylib")
     SET(SDL2_IMAGE_INCLUDE_DIR "/usr/local/Cellar/sdl2_image/2.0.5/include/SDL2")
     INCLUDE(FindPackageHandleStandardArgs)
