@@ -1,4 +1,4 @@
-#include "game.h"
+#include "ground.h"
 
 ground::ground(SDL_Surface* window_surface_ptr) {
 

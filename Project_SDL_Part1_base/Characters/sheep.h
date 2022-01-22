@@ -1,14 +1,8 @@
 #pragma once
 #include "animal.h"
 
-#include <SDL.h>
-#include <SDL_image.h>
-#include <iostream>
-#include <map>
-#include <memory>
-#include <optional>
-#include <vector>
 
+#include "../constants.h"
 /**
  * Class Sheep - derived from Animal
  */

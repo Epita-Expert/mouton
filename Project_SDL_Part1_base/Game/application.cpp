@@ -1,4 +1,4 @@
-﻿#include "game.h"
+﻿#include "application.h"
 
 application::application(unsigned n_sheep, unsigned n_wolf) {
 
