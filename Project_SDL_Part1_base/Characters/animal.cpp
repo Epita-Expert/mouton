@@ -1,4 +1,4 @@
-#include "game.h"
+#include "animal.h"
 
 namespace game {
 // Defining a namespace without a name -> Anonymous workspace
