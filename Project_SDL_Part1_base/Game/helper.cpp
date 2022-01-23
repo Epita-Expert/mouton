@@ -1,4 +1,6 @@
-#include "game.h"
+#pragma once
+
+#include "../constants.h"
 
 void init() {
   // Initialize SDL

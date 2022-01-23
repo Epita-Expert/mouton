@@ -4,7 +4,8 @@
 #include "./ground.h"
 
 
-
+// Helper function to initialize SDL
+void init();
 
 
 // The application class, which is in charge of generating the window

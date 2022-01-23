@@ -59,8 +59,12 @@ int application::loop(unsigned period) {
 
   int count = 0;
 
+  //make a playable character
+  PlayableCharacter* shephard =  new PlayableCharacter("../media/shephard.png",this->window_surface_ptr_);
+
   while (running && (SDL_GetTicks() - start < period * 1000)) {
     while (SDL_PollEvent(&window_event_)) {
+      shephard->handle_events(window_event_);
       switch (window_event_.type) {
       case SDL_QUIT:
         running = false;

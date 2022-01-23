@@ -9,7 +9,10 @@
 #include <vector>
 
 #include "../constants.h"
-#include "../Characters/characters.h"
+#include "../Characters/animal.h"
+#include "../Characters/wolf.h"
+#include "../Characters/sheep.h"
+#include "../Characters/playable_character.h"
 
 
 // The "ground" on which all the animals live (like the std::vector

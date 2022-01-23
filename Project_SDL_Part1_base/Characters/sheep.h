@@ -1,8 +1,6 @@
 #pragma once
 #include "animal.h"
 
-
-#include "../constants.h"
 /**
  * Class Sheep - derived from Animal
  */
