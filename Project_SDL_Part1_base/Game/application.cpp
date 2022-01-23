@@ -60,14 +60,14 @@ int application::loop(unsigned period) {
   int count = 0;
 
   //make a playable character
-  PlayableCharacter* shephard =  new PlayableCharacter("../media/shephard.png",this->window_surface_ptr_);
+  std::unique_ptr<PlayableCharacter> shephard = std::make_unique<PlayableCharacter>("../media/shephard.png",this->window_surface_ptr_);
+ 
 
   while (running && (SDL_GetTicks() - start < period * 1000)) {
     while (SDL_PollEvent(&window_event_)) {
       shephard->handle_events(window_event_);
       switch (window_event_.type) {
       case SDL_QUIT:
-        free(shephard);
         free(this->playing_ground);
         running = false;
         break;
@@ -75,8 +75,12 @@ int application::loop(unsigned period) {
         break;
       }
     }
+    
     // update the playing ground with the animals
     this->playing_ground->update();
+
+    shephard->move(1.0/60.0);
+    shephard->draw();
 
     // update the window
     SDL_UpdateWindowSurface(this->window_ptr_);
@@ -86,7 +90,7 @@ int application::loop(unsigned period) {
     count++;
     SDL_Delay(1000 / frame_rate); // Run the game at 60Hz
   }
-  free(shephard);
+ 
   free(this->playing_ground);
   return 0;
 }

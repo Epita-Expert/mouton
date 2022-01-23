@@ -15,7 +15,7 @@ public:
     };
 
     PlayableCharacter(const std::string& file_path,SDL_Surface *window_surface_ptr);
-    ~PlayableCharacter() = default;
+    ~PlayableCharacter();
 
     void handle_events(SDL_Event const &event);
     void move(double delta_time);
