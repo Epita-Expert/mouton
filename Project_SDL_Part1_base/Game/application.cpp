@@ -67,6 +67,8 @@ int application::loop(unsigned period) {
       shephard->handle_events(window_event_);
       switch (window_event_.type) {
       case SDL_QUIT:
+        free(shephard);
+        free(this->playing_ground);
         running = false;
         break;
       case SDL_WINDOWEVENT:
@@ -84,6 +86,8 @@ int application::loop(unsigned period) {
     count++;
     SDL_Delay(1000 / frame_rate); // Run the game at 60Hz
   }
+  free(shephard);
+  free(this->playing_ground);
   return 0;
 }
 

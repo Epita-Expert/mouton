@@ -11,11 +11,13 @@ ground::~ground() {
   // Free the dynamic table array
   this->animals.clear();
   // delete &animals;
+  
 }
 
 void ground::add_animal(std::unique_ptr<Animal> animal) {
   // Add the type animal to the dynamic array
   this->animals.push_back(std::move(animal));
+ 
 }
 
 void ground::update() {

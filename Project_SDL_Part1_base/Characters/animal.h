@@ -2,9 +2,6 @@
 
 #include "../constants.h"
 
-
-// Helper function to initialize SDL
-void init();
 /**
  * Class Animal
  */
