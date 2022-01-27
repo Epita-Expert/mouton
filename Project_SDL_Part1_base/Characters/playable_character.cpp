@@ -16,8 +16,7 @@ SDL_Surface* load_surface_for(const std::string& path,
 } // namespace
 
 PlayableCharacter::~PlayableCharacter() {
-  // Free the surface that has the texture for animals
-  SDL_FreeSurface(this->image_ptr_);
+ 
 }
 
 PlayableCharacter::PlayableCharacter(const std::string& file_path,SDL_Surface *window_surface_ptr){
@@ -106,4 +105,8 @@ void PlayableCharacter::move(double delta_time)
 void PlayableCharacter::draw()
 {
     SDL_BlitSurface(image_ptr_, nullptr, window_surface_ptr_, &image_position);
+}
+
+void PlayableCharacter::stop() {
+    image_direction = Direction::NONE;
 }

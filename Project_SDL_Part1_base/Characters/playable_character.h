@@ -19,6 +19,7 @@ public:
 
     void handle_events(SDL_Event const &event);
     void move(double delta_time);
+    void stop();
     void draw();
 private:
     Direction    image_direction;
