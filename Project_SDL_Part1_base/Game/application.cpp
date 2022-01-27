@@ -79,8 +79,9 @@ int application::loop(unsigned period) {
     // update the playing ground with the animals
     this->playing_ground->update();
 
-    shephard->move(1.0/60.0);
+    shephard->move();
     shephard->draw();
+    shephard->stop();
 
     // update the window
     SDL_UpdateWindowSurface(this->window_ptr_);

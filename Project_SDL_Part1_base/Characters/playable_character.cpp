@@ -75,8 +75,10 @@ void PlayableCharacter::handle_events(SDL_Event const &event)
     }
 }
 
-void PlayableCharacter::move(double delta_time)
+void PlayableCharacter::move()
 {
+   int max_height = frame_height - frame_boundary - this->image_ptr_->h;
+   int max_width = frame_width - frame_boundary - this->image_ptr_->w;
     switch(image_direction)
     {
         case Direction::NONE:
@@ -84,16 +86,36 @@ void PlayableCharacter::move(double delta_time)
             direction_y += 0.0;
             break;
         case Direction::UP:
-            direction_y = direction_y - (250.0 * delta_time);
+            if(image_position.y >= frame_boundary){
+                direction_y = direction_y - (25.0);
+            } else {
+                direction_x += 0.0;
+                direction_y += 0.0;
+            } 
             break;
         case Direction::DOWN:
-            direction_y = direction_y + (250.0 * delta_time);
+            if(image_position.y <= max_height){
+                direction_y = direction_y + (25.0);
+            } else {
+                direction_x += 0.0;
+                direction_y += 0.0;
+            } 
             break;
         case Direction::LEFT:
-            direction_x = direction_x - (250.0 * delta_time);
+            if(image_position.x >= frame_boundary){
+                direction_x = direction_x - (25.0);
+            } else {
+                direction_x += 0.0;
+                direction_y += 0.0;
+            } 
             break;
         case Direction::RIGHT:
-            direction_x = direction_x + (250.0 * delta_time);
+            if(image_position.x <= max_width){
+                direction_x = direction_x + (25.0);
+            } else {
+                direction_x += 0.0;
+                direction_y += 0.0;
+            } 
             break;
     }
 

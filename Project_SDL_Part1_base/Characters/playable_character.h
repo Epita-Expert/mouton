@@ -18,7 +18,7 @@ public:
     ~PlayableCharacter();
 
     void handle_events(SDL_Event const &event);
-    void move(double delta_time);
+    void move();
     void stop();
     void draw();
 private:
