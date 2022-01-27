@@ -64,8 +64,11 @@ int application::loop(unsigned period) {
  
 
   while (running && (SDL_GetTicks() - start < period * 1000)) {
+    
+
     while (SDL_PollEvent(&window_event_)) {
       shephard->handle_events(window_event_);
+      movement_timer = 0;
       switch (window_event_.type) {
       case SDL_QUIT:
         free(this->playing_ground);
@@ -79,15 +82,25 @@ int application::loop(unsigned period) {
     // update the playing ground with the animals
     this->playing_ground->update();
 
-    shephard->move();
-    shephard->draw();
-    shephard->stop();
+    if(movement_timer <= 25){
+      shephard->move();
+      shephard->draw();
+  
+    } else {
+      shephard->stop();
+    }
+
+        shephard->draw();
+
+    
+    
 
     // update the window
     SDL_UpdateWindowSurface(this->window_ptr_);
 
     // Print every render the number of render
     // std::cout << "Window updated " << count << "times" << std::endl;
+    movement_timer++;
     count++;
     SDL_Delay(1000 / frame_rate); // Run the game at 60Hz
   }

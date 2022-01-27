@@ -47,28 +47,24 @@ PlayableCharacter::PlayableCharacter(const std::string& file_path,SDL_Surface *w
 
 void PlayableCharacter::handle_events(SDL_Event const &event)
 {
+    
     switch(event.type)
     {
         case SDL_KEYDOWN:
             Uint8 const *keys = SDL_GetKeyboardState(nullptr);
 
             if(keys[SDL_SCANCODE_W] == 1) {
-                std::cout << "UP \n";
                 image_direction = Direction::UP;
             }
             else if(keys[SDL_SCANCODE_S] == 1){
-                std::cout << "DOWN \n";
                 image_direction = Direction::DOWN;
             }
             else if(keys[SDL_SCANCODE_A] == 1){
-                std::cout << "LEFT \n";
                 image_direction = Direction::LEFT;
             }
             else if(keys[SDL_SCANCODE_D] == 1){
-                std::cout << "RIGHT \n";
                 image_direction = Direction::RIGHT;
             } else {
-                std::cout << "NONE \n";
                 image_direction = Direction::NONE;
             }   
             break;
@@ -87,7 +83,7 @@ void PlayableCharacter::move()
             break;
         case Direction::UP:
             if(image_position.y >= frame_boundary){
-                direction_y = direction_y - (25.0);
+                direction_y -= 1;
             } else {
                 direction_x += 0.0;
                 direction_y += 0.0;
@@ -95,7 +91,7 @@ void PlayableCharacter::move()
             break;
         case Direction::DOWN:
             if(image_position.y <= max_height){
-                direction_y = direction_y + (25.0);
+                direction_y += 1;
             } else {
                 direction_x += 0.0;
                 direction_y += 0.0;
@@ -103,7 +99,7 @@ void PlayableCharacter::move()
             break;
         case Direction::LEFT:
             if(image_position.x >= frame_boundary){
-                direction_x = direction_x - (25.0);
+                direction_x -= 1;
             } else {
                 direction_x += 0.0;
                 direction_y += 0.0;
@@ -111,7 +107,7 @@ void PlayableCharacter::move()
             break;
         case Direction::RIGHT:
             if(image_position.x <= max_width){
-                direction_x = direction_x + (25.0);
+                direction_x += 1;
             } else {
                 direction_x += 0.0;
                 direction_y += 0.0;
@@ -119,8 +115,8 @@ void PlayableCharacter::move()
             break;
     }
 
-    image_position.x = direction_x;
-    image_position.y = direction_y;
+    image_position.x = direction_x * speed;
+    image_position.y = direction_y * speed;
 }
 
 
