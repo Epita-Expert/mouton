@@ -13,6 +13,7 @@
 #include "../Characters/wolf.h"
 #include "../Characters/sheep.h"
 #include "../Characters/playable_character.h"
+#include "../Characters/shepherd.h"
 
 
 // The "ground" on which all the animals live (like the std::vector

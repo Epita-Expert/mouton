@@ -60,7 +60,7 @@ int application::loop(unsigned period) {
   int count = 0;
 
   //make a playable character
-  std::unique_ptr<PlayableCharacter> shephard = std::make_unique<PlayableCharacter>("../media/shephard.png",this->window_surface_ptr_);
+  std::unique_ptr<Shepherd> shephard = std::make_unique<Shepherd>(this->window_surface_ptr_);
  
 
   while (running && (SDL_GetTicks() - start < period * 1000)) {
