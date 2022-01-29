@@ -3,9 +3,7 @@
 application::application(unsigned n_sheep, unsigned n_wolf) {
 
   // creation of the window
-  this->window_ptr_ =
-      SDL_CreateWindow("Sheep and Wolf", SDL_WINDOWPOS_CENTERED,
-                       SDL_WINDOWPOS_CENTERED, frame_width, frame_height, 0);
+  this->window_ptr_ = SDL_CreateWindow("Sheep and Wolf", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, frame_width, frame_height, 0);
   if (!this->window_ptr_) {
     std::cout << "Failed to create window\n";
     std::cout << "SDL2 Error: " << SDL_GetError() << "\n";
@@ -21,8 +19,7 @@ application::application(unsigned n_sheep, unsigned n_wolf) {
   }
 
   // Put the window in the right color
-  SDL_FillRect(this->window_surface_ptr_, NULL,
-               SDL_MapRGB(this->window_surface_ptr_->format, 153, 255, 51));
+  SDL_FillRect(this->window_surface_ptr_, NULL, SDL_MapRGB(this->window_surface_ptr_->format, 153, 255, 51));
 
   // Instanciation of ground
   ground* playing_ground = new ground(this->window_surface_ptr_);
@@ -31,15 +28,13 @@ application::application(unsigned n_sheep, unsigned n_wolf) {
   // Loop to instance all the sheeps
   for (int i = 0; i < n_sheep; i++) {
     // std::unique_ptr<Animal> sheep(new Sheep(this->window_surface_ptr_));
-    std::unique_ptr<Animal> sheep =
-        std::make_unique<Sheep>(this->window_surface_ptr_);
+    std::unique_ptr<Animal> sheep = std::make_unique<Sheep>(this->window_surface_ptr_);
     this->playing_ground->add_animal(std::move(sheep));
   }
 
   for (int i = 0; i < n_wolf; i++) {
     // std::unique_ptr<Animal> wolf(new Wolf(this->window_surface_ptr_));
-    std::unique_ptr<Animal> wolf =
-        std::make_unique<Wolf>(this->window_surface_ptr_);
+    std::unique_ptr<Animal> wolf = std::make_unique<Wolf>(this->window_surface_ptr_);
     this->playing_ground->add_animal(std::move(wolf));
   }
 

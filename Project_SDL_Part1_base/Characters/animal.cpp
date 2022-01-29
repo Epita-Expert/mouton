@@ -5,8 +5,7 @@ namespace game {
 // Its purpose is to indicate to the compiler that everything
 // inside of it is UNIQUELY used within this source file.
 
-SDL_Surface* load_surface_for(const std::string& path,
-                              SDL_Surface* window_surface_ptr) {
+SDL_Surface* load_surface_for(const std::string& path, SDL_Surface* window_surface_ptr) {
 
   // Helper function to load a png for a specific surface
   // See SDL_ConvertSurface
@@ -21,7 +20,6 @@ Animal::Animal(const std::string& file_path, SDL_Surface* window_surface_ptr) {
   this->window_surface_ptr_ = window_surface_ptr;
   this->direction_x = this->arr[rand() % 2];
   this->direction_y = this->arr[rand() % 2];
-
   // Load the texture of the animal
   this->image_ptr_ = game::load_surface_for(file_path, this->image_ptr_);
   if (!this->image_ptr_)
@@ -30,13 +28,11 @@ Animal::Animal(const std::string& file_path, SDL_Surface* window_surface_ptr) {
   // Give the animal an intial postion
   // in the range of 0 to the frame_width
   this->image_position.x =
-      rand() % (frame_width - frame_boundary - this->image_ptr_->w) +
-      frame_boundary;
+      rand() % (frame_width - frame_boundary - this->image_ptr_->w) + frame_boundary;
 
   // in the range of 0 to the frame_height
   this->image_position.y =
-      rand() % (frame_height - frame_boundary - this->image_ptr_->h) +
-      frame_boundary;
+      rand() % (frame_height - frame_boundary - this->image_ptr_->h) + frame_boundary;
   // Give the size of the rectangle
   // the width of the rectangle will be the same as width of the image
   this->image_position.w = this->image_ptr_->w;
@@ -57,13 +53,16 @@ void Animal::draw() {
   crop.h = this->image_ptr_->h;
   crop.w = this->image_ptr_->w;
 
-  SDL_BlitSurface(this->image_ptr_, &crop, this->window_surface_ptr_,
-                  &image_position);
+  SDL_BlitSurface(this->image_ptr_, &crop, this->window_surface_ptr_, &image_position);
 }
 
 void Animal::move() {
   int max_height = frame_height - frame_boundary - this->image_ptr_->h;
   int max_width = frame_width - frame_boundary - this->image_ptr_->w;
+  int boost = 1;
+  if (boost_cooldown > 0) {
+    boost = 2;
+  }
 
   if (this->image_position.x <= frame_boundary) {
     this->direction_x = -this->direction_x;
@@ -82,6 +81,22 @@ void Animal::move() {
     this->direction_y = -this->direction_y;
     this->image_position.y = max_height;
   }
-  this->image_position.x += this->direction_x * this->speed;
-  this->image_position.y += this->direction_y * this->speed;
+  this->image_position.x += this->direction_x * this->speed * boost;
+  this->image_position.y += this->direction_y * this->speed * boost;
+}
+
+void Animal::boost() { boost_cooldown = 10; }
+int Animal::canReproduce() { return offspring_cooldown > 0 ? 0 : 1; }
+void Animal::reproduce() { 
+  offspring_cooldown = 10; 
+  
+}
+
+void Animal::update() {
+  if (boost_cooldown > 0)
+    boost_cooldown--;
+  if (offspring_cooldown > 0)
+    offspring_cooldown--;
+  this->move();
+  this->draw();
 }

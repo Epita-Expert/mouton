@@ -24,11 +24,13 @@ void ground::add_playable_character(
 
 void ground::update() {
   // The ground gets repainted
-  SDL_FillRect(this->window_surface_ptr_, NULL,
-               SDL_MapRGB(this->window_surface_ptr_->format, 153, 255, 51));
+  SDL_FillRect(this->window_surface_ptr_, NULL, SDL_MapRGB(this->window_surface_ptr_->format, 153, 255, 51));
 
   for (auto& a : this->animals) {
-    a->draw();
-    a->move();
+    a->update();
   }
 }
+
+// void reproduce(std::vector<std::unique_ptr<Animal>> animals) {
+
+// }

@@ -19,6 +19,9 @@ protected:
   float direction_y;
   double speed;
   int arr[2] = {-1, 1};
+  int sex;
+  int boost_cooldown;
+  int offspring_cooldown;
 
 public:
   /**
@@ -34,7 +37,10 @@ public:
   void draw(); // todo: Draw the animal on the screen <-> window_surface_ptr.
                // Note that this function is not virtual, it does not depend
                // on the static type of the instance
-
+  void update();
   virtual void move(); // todo: Animals move around, but in a different
                        // fashion depending on which type of animal
+  void boost();
+  int canReproduce();
+  void reproduce();
 };
