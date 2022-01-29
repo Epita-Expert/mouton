@@ -13,118 +13,104 @@ SDL_Surface* load_surface_for(const std::string& path,
   window_surface_ptr = IMG_Load(path.c_str());
   return window_surface_ptr;
 }
-} // namespace
+} // namespace image
 
-PlayableCharacter::~PlayableCharacter() {
- 
-}
+PlayableCharacter::~PlayableCharacter() {}
 
-PlayableCharacter::PlayableCharacter(const std::string& file_path,SDL_Surface *window_surface_ptr){
-    // InitialiZe the window_surface_ptr_ in the class
-    this->window_surface_ptr_ = window_surface_ptr;
-    this->image_ptr_ = image::load_surface_for(file_path, this->image_ptr_);
-    if (!this->image_ptr_)
-        throw std::runtime_error("Could not load image");
+PlayableCharacter::PlayableCharacter(const std::string& file_path,
+                                     SDL_Surface* window_surface_ptr) {
+  // InitialiZe the window_surface_ptr_ in the class
+  this->window_surface_ptr_ = window_surface_ptr;
+  this->image_ptr_ = image::load_surface_for(file_path, this->image_ptr_);
+  if (!this->image_ptr_)
+    throw std::runtime_error("Could not load image");
 
-    // Give the animal an intial postion
-    // in the range of 0 to the frame_width
-    this->image_position.x =
+  // Give the animal an intial postion
+  // in the range of 0 to the frame_width
+  this->image_position.x =
       rand() % (frame_width - frame_boundary - this->image_ptr_->w) +
       frame_boundary;
 
-    // in the range of 0 to the frame_height
-    this->image_position.y =
+  // in the range of 0 to the frame_height
+  this->image_position.y =
       rand() % (frame_height - frame_boundary - this->image_ptr_->h) +
       frame_boundary;
-    // Give the size of the rectangle
-    // the width of the rectangle will be the same as width of the image
-    this->image_position.w = this->image_ptr_->w;
-    // the height of the rectangle will be the same as height of the image
-    this->image_position.h = this->image_ptr_->h;
+  // Give the size of the rectangle
+  // the width of the rectangle will be the same as width of the image
+  this->image_position.w = this->image_ptr_->w;
+  // the height of the rectangle will be the same as height of the image
+  this->image_position.h = this->image_ptr_->h;
 }
 
+void PlayableCharacter::handle_events(SDL_Event const& event) {
 
+  switch (event.type) {
+  case SDL_KEYDOWN:
+    Uint8 const* keys = SDL_GetKeyboardState(nullptr);
 
-void PlayableCharacter::handle_events(SDL_Event const &event)
-{
-    
-    switch(event.type)
-    {
-        case SDL_KEYDOWN:
-            Uint8 const *keys = SDL_GetKeyboardState(nullptr);
-
-            if(keys[SDL_SCANCODE_W] == 1) {
-                image_direction = Direction::UP;
-            }
-            else if(keys[SDL_SCANCODE_S] == 1){
-                image_direction = Direction::DOWN;
-            }
-            else if(keys[SDL_SCANCODE_A] == 1){
-                image_direction = Direction::LEFT;
-            }
-            else if(keys[SDL_SCANCODE_D] == 1){
-                image_direction = Direction::RIGHT;
-            } else {
-                image_direction = Direction::NONE;
-            }   
-            break;
+    if (keys[SDL_SCANCODE_W] == 1) {
+      image_direction = Direction::UP;
+    } else if (keys[SDL_SCANCODE_S] == 1) {
+      image_direction = Direction::DOWN;
+    } else if (keys[SDL_SCANCODE_A] == 1) {
+      image_direction = Direction::LEFT;
+    } else if (keys[SDL_SCANCODE_D] == 1) {
+      image_direction = Direction::RIGHT;
+    } else {
+      image_direction = Direction::NONE;
     }
+    break;
+  }
 }
 
-void PlayableCharacter::move()
-{
-   int max_height = frame_height - frame_boundary - this->image_ptr_->h;
-   int max_width = frame_width - frame_boundary - this->image_ptr_->w;
-    switch(image_direction)
-    {
-        case Direction::NONE:
-            direction_x += 0.0;
-            direction_y += 0.0;
-            break;
-        case Direction::UP:
-            if(image_position.y >= frame_boundary){
-                direction_y -= 1;
-            } else {
-                direction_x += 0.0;
-                direction_y += 0.0;
-            } 
-            break;
-        case Direction::DOWN:
-            if(image_position.y <= max_height){
-                direction_y += 1;
-            } else {
-                direction_x += 0.0;
-                direction_y += 0.0;
-            } 
-            break;
-        case Direction::LEFT:
-            if(image_position.x >= frame_boundary){
-                direction_x -= 1;
-            } else {
-                direction_x += 0.0;
-                direction_y += 0.0;
-            } 
-            break;
-        case Direction::RIGHT:
-            if(image_position.x <= max_width){
-                direction_x += 1;
-            } else {
-                direction_x += 0.0;
-                direction_y += 0.0;
-            } 
-            break;
+void PlayableCharacter::move() {
+  int max_height = frame_height - frame_boundary - this->image_ptr_->h;
+  int max_width = frame_width - frame_boundary - this->image_ptr_->w;
+  switch (image_direction) {
+  case Direction::NONE:
+    direction_x += 0.0;
+    direction_y += 0.0;
+    break;
+  case Direction::UP:
+    if (image_position.y >= frame_boundary) {
+      direction_y -= 1;
+    } else {
+      direction_x += 0.0;
+      direction_y += 0.0;
     }
+    break;
+  case Direction::DOWN:
+    if (image_position.y <= max_height) {
+      direction_y += 1;
+    } else {
+      direction_x += 0.0;
+      direction_y += 0.0;
+    }
+    break;
+  case Direction::LEFT:
+    if (image_position.x >= frame_boundary) {
+      direction_x -= 1;
+    } else {
+      direction_x += 0.0;
+      direction_y += 0.0;
+    }
+    break;
+  case Direction::RIGHT:
+    if (image_position.x <= max_width) {
+      direction_x += 1;
+    } else {
+      direction_x += 0.0;
+      direction_y += 0.0;
+    }
+    break;
+  }
 
-    image_position.x = direction_x * speed;
-    image_position.y = direction_y * speed;
+  image_position.x = direction_x * speed;
+  image_position.y = direction_y * speed;
 }
 
-
-void PlayableCharacter::draw()
-{
-    SDL_BlitSurface(image_ptr_, nullptr, window_surface_ptr_, &image_position);
+void PlayableCharacter::draw() {
+  SDL_BlitSurface(image_ptr_, nullptr, window_surface_ptr_, &image_position);
 }
 
-void PlayableCharacter::stop() {
-    image_direction = Direction::NONE;
-}
+void PlayableCharacter::stop() { image_direction = Direction::NONE; }

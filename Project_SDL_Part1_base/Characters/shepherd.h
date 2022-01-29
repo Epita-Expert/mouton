@@ -3,8 +3,7 @@
 
 class Shepherd : public PlayableCharacter {
 public:
+  Shepherd(SDL_Surface* window_surface_ptr);
 
-    Shepherd(SDL_Surface* window_surface_ptr);
-
-    ~Shepherd();
+  ~Shepherd();
 };
