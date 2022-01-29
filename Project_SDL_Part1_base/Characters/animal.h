@@ -2,6 +2,8 @@
 
 #include "../constants.h"
 
+
+
 /**
  * Class Animal
  */
@@ -18,7 +20,10 @@ protected:
   float direction_x;
   float direction_y;
   double speed;
+  bool prey;
+  bool alive;
   int arr[2] = {-1, 1};
+  
 
 public:
   /**
@@ -35,6 +40,8 @@ public:
                // Note that this function is not virtual, it does not depend
                // on the static type of the instance
 
-  virtual void move(); // todo: Animals move around, but in a different
+  virtual void move(std::vector< std::unique_ptr<Animal> > animals); // todo: Animals move around, but in a different
                        // fashion depending on which type of animal
+  bool is_prey();
+  SDL_Rect get_position();
 };

@@ -61,7 +61,8 @@ void Animal::draw() {
                   &image_position);
 }
 
-void Animal::move() {
+void Animal::move(std::vector< std::unique_ptr<Animal> > animals) {
+  
   int max_height = frame_height - frame_boundary - this->image_ptr_->h;
   int max_width = frame_width - frame_boundary - this->image_ptr_->w;
 
@@ -84,4 +85,14 @@ void Animal::move() {
   }
   this->image_position.x += this->direction_x * this->speed;
   this->image_position.y += this->direction_y * this->speed;
+}
+
+bool Animal::is_prey()
+{
+  return prey;
+}
+
+SDL_Rect Animal::get_position()
+{
+  return image_position;
 }

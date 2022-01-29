@@ -30,6 +30,6 @@ void ground::update() {
   
   for (auto &a : this->animals) {
     a->draw();
-    a->move();
+    a->move(std::move(this->animals));
   }
 }

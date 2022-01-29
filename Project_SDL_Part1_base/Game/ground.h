@@ -26,6 +26,7 @@ private:
   std::vector< std::unique_ptr<Animal> > animals;
 
   std::vector< std::unique_ptr<PlayableCharacter> > playableCharacters;
+  
 
 
 public:
