@@ -62,13 +62,13 @@ int application::loop(unsigned period) {
   int count = 0;
 
   // make a playable character
-  std::unique_ptr<Shepherd> shephard =
+  std::unique_ptr<Shepherd> shepherd =
       std::make_unique<Shepherd>(this->window_surface_ptr_);
 
   while (running && (SDL_GetTicks() - start < period * 1000)) {
 
     while (SDL_PollEvent(&window_event_)) {
-      shephard->handle_events(window_event_);
+      shepherd->handle_events(window_event_);
       movement_timer = 0;
       switch (window_event_.type) {
       case SDL_QUIT:
@@ -84,14 +84,14 @@ int application::loop(unsigned period) {
     this->playing_ground->update();
 
     if (movement_timer <= 25) {
-      shephard->move();
-      shephard->draw();
+      shepherd->move();
+      shepherd->draw();
 
     } else {
-      shephard->stop();
+      shepherd->stop();
     }
 
-    shephard->draw();
+    shepherd->draw();
 
     // update the window
     SDL_UpdateWindowSurface(this->window_ptr_);

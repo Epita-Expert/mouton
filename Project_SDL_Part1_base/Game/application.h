@@ -13,7 +13,7 @@ private:
 
   // Other attributes here, for example an instance of ground
   ground* playing_ground;
-  int movement_timer = 0;
+  int movement_timer;
 
 public:
   application(unsigned n_sheep, unsigned n_wolf); // Ctor
