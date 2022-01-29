@@ -13,7 +13,7 @@ SDL_Surface* load_surface_for(const std::string& path,
   window_surface_ptr = IMG_Load(path.c_str());
   return window_surface_ptr;
 }
-} // namespace
+} // namespace game
 
 Animal::Animal(const std::string& file_path, SDL_Surface* window_surface_ptr) {
 

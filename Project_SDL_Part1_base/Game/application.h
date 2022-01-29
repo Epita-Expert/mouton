@@ -3,10 +3,6 @@
 #include "../constants.h"
 #include "./ground.h"
 
-
-
-
-
 // The application class, which is in charge of generating the window
 class application {
 private:
@@ -17,6 +13,7 @@ private:
 
   // Other attributes here, for example an instance of ground
   ground* playing_ground;
+  int movement_timer;
 
 public:
   application(unsigned n_sheep, unsigned n_wolf); // Ctor

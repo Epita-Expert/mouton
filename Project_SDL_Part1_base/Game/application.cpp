@@ -31,13 +31,15 @@ application::application(unsigned n_sheep, unsigned n_wolf) {
   // Loop to instance all the sheeps
   for (int i = 0; i < n_sheep; i++) {
     // std::unique_ptr<Animal> sheep(new Sheep(this->window_surface_ptr_));
-    std::unique_ptr<Animal> sheep = std::make_unique<Sheep>(this->window_surface_ptr_);
+    std::unique_ptr<Animal> sheep =
+        std::make_unique<Sheep>(this->window_surface_ptr_);
     this->playing_ground->add_animal(std::move(sheep));
   }
 
   for (int i = 0; i < n_wolf; i++) {
     // std::unique_ptr<Animal> wolf(new Wolf(this->window_surface_ptr_));
-    std::unique_ptr<Animal> wolf = std::make_unique<Wolf>(this->window_surface_ptr_);
+    std::unique_ptr<Animal> wolf =
+        std::make_unique<Wolf>(this->window_surface_ptr_);
     this->playing_ground->add_animal(std::move(wolf));
   }
 
@@ -59,13 +61,15 @@ int application::loop(unsigned period) {
 
   int count = 0;
 
-  //make a playable character
-  std::unique_ptr<PlayableCharacter> shephard = std::make_unique<PlayableCharacter>("../media/shephard.png",this->window_surface_ptr_);
- 
+  // make a playable character
+  std::unique_ptr<Shepherd> shepherd =
+      std::make_unique<Shepherd>(this->window_surface_ptr_);
 
   while (running && (SDL_GetTicks() - start < period * 1000)) {
+
     while (SDL_PollEvent(&window_event_)) {
-      shephard->handle_events(window_event_);
+      shepherd->handle_events(window_event_);
+      movement_timer = 0;
       switch (window_event_.type) {
       case SDL_QUIT:
         free(this->playing_ground);
@@ -75,23 +79,30 @@ int application::loop(unsigned period) {
         break;
       }
     }
-    
+
     // update the playing ground with the animals
     this->playing_ground->update();
 
-    shephard->move(1.0/60.0);
-    shephard->draw();
+    if (movement_timer <= 25) {
+      shepherd->move();
+      shepherd->draw();
+
+    } else {
+      shepherd->stop();
+    }
+
+    shepherd->draw();
 
     // update the window
     SDL_UpdateWindowSurface(this->window_ptr_);
 
     // Print every render the number of render
     // std::cout << "Window updated " << count << "times" << std::endl;
+    movement_timer++;
     count++;
     SDL_Delay(1000 / frame_rate); // Run the game at 60Hz
   }
- 
+
   free(this->playing_ground);
   return 0;
 }
-

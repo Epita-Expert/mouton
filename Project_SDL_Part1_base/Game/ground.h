@@ -8,12 +8,12 @@
 #include <optional>
 #include <vector>
 
-#include "../constants.h"
 #include "../Characters/animal.h"
-#include "../Characters/wolf.h"
-#include "../Characters/sheep.h"
 #include "../Characters/playable_character.h"
-
+#include "../Characters/sheep.h"
+#include "../Characters/shepherd.h"
+#include "../Characters/wolf.h"
+#include "../constants.h"
 
 // The "ground" on which all the animals live (like the std::vector
 // in the zoo example).
@@ -23,16 +23,16 @@ private:
   SDL_Surface* window_surface_ptr_;
 
   // Some attribute to store all the wolves and sheep
-  std::vector< std::unique_ptr<Animal> > animals;
+  std::vector<std::unique_ptr<Animal>> animals;
 
-  std::vector< std::unique_ptr<PlayableCharacter> > playableCharacters;
-
+  std::vector<std::unique_ptr<PlayableCharacter>> playableCharacters;
 
 public:
   ground(SDL_Surface* window_surface_ptr); // todo: Ctor
   ~ground(); // todo: Dtor, again for clean up (if necessary)
   void add_animal(std::unique_ptr<Animal> animal); // todo: Add an animal
-  void add_playable_character(std::unique_ptr<PlayableCharacter> playableCharacter);
+  void
+  add_playable_character(std::unique_ptr<PlayableCharacter> playableCharacter);
   void update(); // todo: "refresh the screen": Move animals and draw them
                  // Possibly other methods, depends on your implementation
 };

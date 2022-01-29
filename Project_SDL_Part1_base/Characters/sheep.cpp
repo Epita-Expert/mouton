@@ -5,6 +5,4 @@ Sheep::Sheep(SDL_Surface* window_surface_ptr_)
   this->speed = 1;
 }
 
-Sheep::~Sheep(){
-  
-}
+Sheep::~Sheep() {}
