@@ -97,9 +97,7 @@ int application::loop(unsigned period) {
     movement_timer++;
     count++;
     SDL_Delay(1000 / frame_rate); // Run the game at 60Hz
-    // break;
   }
 
-  // free(this->playing_ground);
   return 0;
 }

@@ -51,7 +51,6 @@ void Ground::update() {
           Sheep* s1 = dynamic_cast<Sheep*>(a.get());
           Sheep* s2 = dynamic_cast<Sheep*>(b.get());
           if (s1->getSex() == s2->getSex()) {
-            // delete s1, s2;
             continue; // S'ils ont le meme sexe
           }
           if (s1->canHaveOffspring()) {
@@ -61,8 +60,8 @@ void Ground::update() {
             std::unique_ptr<Animal> sheep = s2->getOffspring(this->window_surface_ptr_);
             this->add_animal(std::move(sheep));
           }
-          // delete s1, s2;
-        }
+        } 
+        // Kill sheep
       }
 
       // S'ils se voyent
@@ -75,13 +74,11 @@ void Ground::update() {
           Sheep* sheep = dynamic_cast<Sheep*>(a.get());
           
           sheep->boost(b->getDirections());
-          // delete sheep;
         } else if (a->getType() == Type::WOLF && b->getType() == Type::SHEEP) {
           std::cout << "[Logger] Sheep and wolf " << b.get() << " and wolf " << a.get()
                     << " have met " << std::endl;
           Sheep* sheep = dynamic_cast<Sheep*>(b.get());
           sheep->boost(b->getDirections());
-          // delete sheep;
         }
       }
     }
