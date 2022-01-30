@@ -17,19 +17,19 @@
 
 // The "ground" on which all the animals live (like the std::vector
 // in the zoo example).
-class ground {
+class Ground {
 private:
   // Attention, NON-OWNING ptr, again to the screen
   SDL_Surface* window_surface_ptr_;
 
-  // Some attribute to store all the wolves and sheep
+  // Some attribute to store all the wolves and sheeps
   std::vector<std::unique_ptr<Animal>> animals;
 
   std::vector<std::unique_ptr<PlayableCharacter>> playableCharacters;
 
 public:
-  ground(SDL_Surface* window_surface_ptr); // todo: Ctor
-  ~ground(); // todo: Dtor, again for clean up (if necessary)
+  Ground(SDL_Surface* window_surface_ptr); // todo: Ctor
+  ~Ground(); // todo: Dtor, again for clean up (if necessary)
   void add_animal(std::unique_ptr<Animal> animal); // todo: Add an animal
   void
   add_playable_character(std::unique_ptr<PlayableCharacter> playableCharacter);

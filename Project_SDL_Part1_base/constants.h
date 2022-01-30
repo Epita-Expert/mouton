@@ -16,3 +16,5 @@ const unsigned frame_height = 900; // Height of window in pixel
 // Minimal distance of animals to the border
 // of the screen
 const unsigned frame_boundary = 50;
+
+enum class Type { SHEEP, WOLF, DOG };

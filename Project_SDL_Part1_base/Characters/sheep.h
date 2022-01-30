@@ -5,6 +5,9 @@
  * Class Sheep - derived from Animal
  */
 class Sheep : public Animal {
+private:
+  int sex;
+
 public:
   /**
    * Method - contructor
@@ -16,4 +19,5 @@ public:
    */
   ~Sheep();
   // implement functions that are purely virtual in base class
+  int getSex();
 };

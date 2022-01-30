@@ -1,4 +1,5 @@
 #include "animal.h"
+#include "sheep.h"
 
 namespace game {
 // Defining a namespace without a name -> Anonymous workspace
@@ -14,89 +15,93 @@ SDL_Surface* load_surface_for(const std::string& path, SDL_Surface* window_surfa
 }
 } // namespace game
 
-Animal::Animal(const std::string& file_path, SDL_Surface* window_surface_ptr) {
+Animal::Animal(const std::string& file_path, SDL_Surface* window_surface_ptr, int speed, Type type) {
 
+  this->speed = speed;
+  this->type = type;
+  direction_x = arr[rand() % 2];
+  direction_y = arr[rand() % 2];
   // InitialiZe the window_surface_ptr_ in the class
-  this->window_surface_ptr_ = window_surface_ptr;
-  this->direction_x = this->arr[rand() % 2];
-  this->direction_y = this->arr[rand() % 2];
+  window_surface_ptr_ = window_surface_ptr;
   // Load the texture of the animal
-  this->image_ptr_ = game::load_surface_for(file_path, this->image_ptr_);
-  if (!this->image_ptr_)
+  image_ptr_ = game::load_surface_for(file_path, image_ptr_);
+  if (!image_ptr_)
     throw std::runtime_error("Could not load image");
 
   // Give the animal an intial postion
   // in the range of 0 to the frame_width
-  this->image_position.x =
-      rand() % (frame_width - frame_boundary - this->image_ptr_->w) + frame_boundary;
+  image_position.x =
+      rand() % (frame_width - frame_boundary - image_ptr_->w) + frame_boundary;
 
   // in the range of 0 to the frame_height
-  this->image_position.y =
-      rand() % (frame_height - frame_boundary - this->image_ptr_->h) + frame_boundary;
+  image_position.y =
+      rand() % (frame_height - frame_boundary - image_ptr_->h) + frame_boundary;
   // Give the size of the rectangle
   // the width of the rectangle will be the same as width of the image
-  this->image_position.w = this->image_ptr_->w;
+  image_position.w = image_ptr_->w;
   // the height of the rectangle will be the same as height of the image
-  this->image_position.h = this->image_ptr_->h;
+  image_position.h = image_ptr_->h;
 }
 
 Animal::~Animal() {
   // Free the surface that has the texture for animals
-  SDL_FreeSurface(this->image_ptr_);
+  SDL_FreeSurface(image_ptr_);
 }
 
 void Animal::draw() {
   // Put the animal's image surface on the window surface
-  SDL_Rect crop, positionFond;
-  crop.x = 0;
-  crop.y = 0;
-  crop.h = this->image_ptr_->h;
-  crop.w = this->image_ptr_->w;
+  // SDL_Rect crop;
+  // crop.x = 0;
+  // crop.y = 0;
+  // crop.h = image_ptr_->h;
+  // crop.w = image_ptr_->w;
 
-  SDL_BlitSurface(this->image_ptr_, &crop, this->window_surface_ptr_, &image_position);
+  SDL_BlitSurface(this->image_ptr_, NULL, this->window_surface_ptr_, &image_position);
 }
 
 void Animal::move() {
-  int max_height = frame_height - frame_boundary - this->image_ptr_->h;
-  int max_width = frame_width - frame_boundary - this->image_ptr_->w;
+  int max_height = frame_height - frame_boundary - image_ptr_->h;
+  int max_width = frame_width - frame_boundary - image_ptr_->w;
   int boost = 1;
   if (boost_cooldown > 0) {
     boost = 2;
   }
 
-  if (this->image_position.x <= frame_boundary) {
-    this->direction_x = -this->direction_x;
-    this->image_position.x = frame_boundary;
+  if (image_position.x <= frame_boundary) {
+    direction_x = -direction_x;
+    image_position.x = frame_boundary;
   }
-  if (this->image_position.x >= max_width) {
-    this->direction_x = -this->direction_x;
-    this->image_position.x = max_width;
+  if (image_position.x >= max_width) {
+    direction_x = -direction_x;
+    image_position.x = max_width;
   }
-  if (this->image_position.y <= frame_boundary) {
-    this->direction_y = -this->direction_y;
-    this->image_position.y = frame_boundary;
+  if (image_position.y <= frame_boundary) {
+    direction_y = -direction_y;
+    image_position.y = frame_boundary;
   }
 
-  if (this->image_position.y >= max_height) {
-    this->direction_y = -this->direction_y;
-    this->image_position.y = max_height;
+  if (image_position.y >= max_height) {
+    direction_y = -direction_y;
+    image_position.y = max_height;
   }
-  this->image_position.x += this->direction_x * this->speed * boost;
-  this->image_position.y += this->direction_y * this->speed * boost;
+  image_position.x += direction_x * speed * boost;
+  image_position.y += direction_y * speed * boost;
 }
 
 void Animal::boost() { boost_cooldown = 10; }
-int Animal::canReproduce() { return offspring_cooldown > 0 ? 0 : 1; }
-void Animal::reproduce() { 
-  offspring_cooldown = 10; 
-  
-}
 
 void Animal::update() {
-  if (boost_cooldown > 0)
-    boost_cooldown--;
-  if (offspring_cooldown > 0)
-    offspring_cooldown--;
-  this->move();
-  this->draw();
+  // if (type == Type::SHEEP) {
+  //   if (boost_cooldown > 0)
+  //     boost_cooldown--;
+  //   if (offspring_cooldown > 0)
+  //     offspring_cooldown--;
+  // }
+  move();
+  draw();
 }
+
+int Animal::getPosx() { return image_position.x; }
+int Animal::getPosy() { return image_position.y; }
+
+Type Animal::getType() { return type; }

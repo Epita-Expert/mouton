@@ -23,5 +23,5 @@ private:
   SDL_Rect image_position;
   double direction_x;
   double direction_y;
-  double speed = 5;
+  double speed;
 };

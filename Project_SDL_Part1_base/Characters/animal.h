@@ -19,16 +19,17 @@ protected:
   float direction_y;
   double speed;
   int arr[2] = {-1, 1};
-  int sex;
-  int boost_cooldown;
-  int offspring_cooldown;
+  Type type;
+ 
 
 public:
+  int boost_cooldown;
+  int offspring_cooldown;
   /**
    * todo: The constructor has to load the sdl_surface that corresponds to the
    * texture
    */
-  Animal(const std::string& file_path, SDL_Surface* window_surface_ptr);
+  Animal(const std::string& file_path, SDL_Surface* window_surface_ptr, int speed, Type type);
   /**
    * todo: Use the destructor to release memory and "clean up behind you"
    *
@@ -41,6 +42,8 @@ public:
   virtual void move(); // todo: Animals move around, but in a different
                        // fashion depending on which type of animal
   void boost();
-  int canReproduce();
-  void reproduce();
+
+  int getPosx();
+  int getPosy();  
+  Type getType();
 };
