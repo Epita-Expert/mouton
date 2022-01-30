@@ -35,7 +35,7 @@ void Ground::update() {
     for (int j = 0 + i; j < this->animals.size(); j++) {
       // Si c'est le meme animal
       auto& b = this->animals[j];
-      // std::cout << "[Logger] Animal " << (a->getType() == Type::WOLF) << " and "
+      // if (DEBUG) std::cout << "[DEBUG] Animal " << (a->getType() == Type::WOLF) << " and "
       //           << b.get() << std::endl;
 
       if (a.get() == b.get())
@@ -46,7 +46,7 @@ void Ground::update() {
           abs(a->getPosy() - b->getPosy()) < touch_distance) {
         // If it's 2 sheeps
         if (a->getType() == Type::SHEEP && b->getType() == Type::SHEEP) {
-          std::cout << "[Logger] Sheep " << a.get() << " and " << b.get() << " have met "
+          if (DEBUG) std::cout << "[DEBUG] Sheep " << a.get() << " and " << b.get() << " have met "
                     << std::endl;
           Sheep* s1 = dynamic_cast<Sheep*>(a.get());
           Sheep* s2 = dynamic_cast<Sheep*>(b.get());
@@ -69,13 +69,13 @@ void Ground::update() {
           abs(a->getPosy() - b->getPosy()) < eyesight_distance) {
         if (a->getType() == Type::SHEEP &&
             b->getType() == Type::WOLF) { // If it's a sheep and a wolf
-          std::cout << "[Logger] Sheep " << a.get() << " and wolf " << b.get()
+          if (DEBUG) std::cout << "[DEBUG] Sheep " << a.get() << " and wolf " << b.get()
                     << " have met " << std::endl;
           Sheep* sheep = dynamic_cast<Sheep*>(a.get());
           
           sheep->boost(b->getDirections());
         } else if (a->getType() == Type::WOLF && b->getType() == Type::SHEEP) {
-          std::cout << "[Logger] Sheep and wolf " << b.get() << " and wolf " << a.get()
+          if (DEBUG) std::cout << "[DEBUG] Sheep and wolf " << b.get() << " and wolf " << a.get()
                     << " have met " << std::endl;
           Sheep* sheep = dynamic_cast<Sheep*>(b.get());
           sheep->boost(b->getDirections());
