@@ -1,8 +1,11 @@
 ﻿#include "application.h"
 
+extern int DEBUG;
+
 application::application(unsigned n_sheep, unsigned n_wolf) {
   // creation of the window
-  this->window_ptr_ = SDL_CreateWindow("Sheep and Wolf", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
+  this->window_ptr_ =
+      SDL_CreateWindow("Sheep and Wolf", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
                        frame_width, frame_height, 0);
   if (!this->window_ptr_) {
     std::cout << "Failed to create window\n";
@@ -40,9 +43,8 @@ application::application(unsigned n_sheep, unsigned n_wolf) {
     this->playing_ground->add_animal(std::move(wolf));
   }
 
-
   this->movement_timer = 0;
-  std::cout << "[Logger] Application created" << std::endl;
+  if (DEBUG) std::cout << "[DEBUG] Application created" << std::endl;
 }
 
 // DESTRUCTOR

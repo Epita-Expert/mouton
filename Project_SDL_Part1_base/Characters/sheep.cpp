@@ -6,7 +6,7 @@ Sheep::Sheep(SDL_Surface* window_surface_ptr_)
   this->boost_cooldown = 0;
   this->offspring_cooldown = 0;
   this->growth_cooldown = 60;
-  std::cout << "[Logger] Sheep " << this << " created" << std::endl;
+  if (DEBUG) std::cout << "[DEBUG] Sheep " << this << " created" << std::endl;
 }
 Sheep::~Sheep() {}
 
@@ -19,15 +19,15 @@ int Sheep::getSex() { return sex; }
 
 int Sheep::canHaveOffspring() {
   if (this->growth_cooldown > 0) {
-    std::cout << "[Logger] Sheep " << this << " is too young" << std::endl;
+    if (DEBUG) std::cout << "[DEBUG] Sheep " << this << " is too young" << std::endl;
     return 0; // Too young
   }
   if (this->sex == 1) {
-    std::cout << "[Logger] Sheep " << this << " is a male " << std::endl;
+    if (DEBUG) std::cout << "[DEBUG] Sheep " << this << " is a male " << std::endl;
     return 0; // It's a male
   }
   if (this->offspring_cooldown > 0) {
-    std::cout << "[Logger] Sheep " << this << " is recovering " << std::endl;
+    if (DEBUG) std::cout << "[DEBUG] Sheep " << this << " is recovering " << std::endl;
     return 0; // Recovering from last offspring
   }
   return 1;
@@ -46,7 +46,7 @@ void Sheep::update() {
   if (this->offspring_cooldown > 0)
     this->offspring_cooldown--;
   this->grow();
-  // std::cout << "[Logger] Sheep " << this << " { " << boost_cooldown << ", "
+  // if (DEBUG) std::cout << "[DEBUG] Sheep " << this << " { " << boost_cooldown << ", "
   //           << offspring_cooldown << ", " << growth_cooldown << " } updated" << std::endl;
   this->move();
   this->draw();
@@ -54,13 +54,13 @@ void Sheep::update() {
 
 void Sheep::boost(std::vector<float> directions) {
   if (this->boost_cooldown > 0) {
-    std::cout << "[Logger] Already boosted can't run faster" << std::endl;
+    if (DEBUG) std::cout << "[DEBUG] Already boosted can't run faster" << std::endl;
     return;
   }
   this->direction_x = directions[0];
   this->direction_y = directions[1];
   this->boost_cooldown = 50;
-  std::cout << "[Logger] Sheep is boosted" << std::endl;
+  if (DEBUG) std::cout << "[DEBUG] Sheep is boosted" << std::endl;
   return;
 }
 

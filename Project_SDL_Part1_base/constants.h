@@ -8,6 +8,10 @@
 #include <optional>
 #include <vector>
 
+// Mode
+//Log level
+extern int DEBUG;
+
 // Defintions
 const double frame_rate = 60.0; // refresh rate
 const double frame_time = 1. / frame_rate;
