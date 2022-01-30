@@ -27,25 +27,64 @@ void Ground::update() {
   SDL_FillRect(this->window_surface_ptr_, NULL,
                SDL_MapRGB(this->window_surface_ptr_->format, 153, 255, 51));
 
-  for (auto& a : this->animals) {
+  // for (auto& a : this->animals) {
+  for (int i = 0; i < this->animals.size(); i++) {
 
-    for (auto& b: this->animals) {
-      if (a.get() == b.get()) continue; // Si se sont les meme animaux
-      if (abs(a->getPosx() - b->getPosx()) > 10 || abs(a->getPosy() - b->getPosy()) > 10) continue;// S'ils ne sont pas a cote
-      if (a->getType() != Type::SHEEP || b->getType() != Type::SHEEP) continue; // S'ils ne sont pas des moutons
-      std::cout << "[Logger] Sheep " << a.get() << " and " << b.get() << " met " << std::endl;
-      Sheep * s1 = dynamic_cast<Sheep*>(a.get());
-      Sheep * s2 = dynamic_cast<Sheep*>(b.get()); 
-      if (s1->getSex() == s2->getSex()) continue; // S'ils ont le meme sexe
-      if (s1->canHaveOffspring()) {
-        std::unique_ptr<Animal> sheep = s1->getOffspring(this->window_surface_ptr_);
-        this->add_animal(std::move(sheep));
-      } else if (s2->canHaveOffspring()) {
-        std::unique_ptr<Animal> sheep = s2->getOffspring(this->window_surface_ptr_);
-        this->add_animal(std::move(sheep));
+    auto& a = this->animals[i];
+    // for (auto& b : this->animals) {
+    for (int j = 0 + i; j < this->animals.size(); j++) {
+      // Si c'est le meme animal
+      auto& b = this->animals[j];
+      // std::cout << "[Logger] Animal " << (a->getType() == Type::WOLF) << " and "
+      //           << b.get() << std::endl;
+
+      if (a.get() == b.get())
+        continue;
+
+      // S'ils se touche
+      if (abs(a->getPosx() - b->getPosx()) < touch_distance &&
+          abs(a->getPosy() - b->getPosy()) < touch_distance) {
+        // If it's 2 sheeps
+        if (a->getType() == Type::SHEEP && b->getType() == Type::SHEEP) {
+          std::cout << "[Logger] Sheep " << a.get() << " and " << b.get() << " have met "
+                    << std::endl;
+          Sheep* s1 = dynamic_cast<Sheep*>(a.get());
+          Sheep* s2 = dynamic_cast<Sheep*>(b.get());
+          if (s1->getSex() == s2->getSex()) {
+            // delete s1, s2;
+            continue; // S'ils ont le meme sexe
+          }
+          if (s1->canHaveOffspring()) {
+            std::unique_ptr<Animal> sheep = s1->getOffspring(this->window_surface_ptr_);
+            this->add_animal(std::move(sheep));
+          } else if (s2->canHaveOffspring()) {
+            std::unique_ptr<Animal> sheep = s2->getOffspring(this->window_surface_ptr_);
+            this->add_animal(std::move(sheep));
+          }
+          // delete s1, s2;
+        }
+      }
+
+      // S'ils se voyent
+      if (abs(a->getPosx() - b->getPosx()) < eyesight_distance &&
+          abs(a->getPosy() - b->getPosy()) < eyesight_distance) {
+        if (a->getType() == Type::SHEEP &&
+            b->getType() == Type::WOLF) { // If it's a sheep and a wolf
+          std::cout << "[Logger] Sheep " << a.get() << " and wolf " << b.get()
+                    << " have met " << std::endl;
+          Sheep* sheep = dynamic_cast<Sheep*>(a.get());
+          
+          sheep->boost(b->getDirections());
+          // delete sheep;
+        } else if (a->getType() == Type::WOLF && b->getType() == Type::SHEEP) {
+          std::cout << "[Logger] Sheep and wolf " << b.get() << " and wolf " << a.get()
+                    << " have met " << std::endl;
+          Sheep* sheep = dynamic_cast<Sheep*>(b.get());
+          sheep->boost(b->getDirections());
+          // delete sheep;
+        }
       }
     }
-
     a->update();
   }
 }

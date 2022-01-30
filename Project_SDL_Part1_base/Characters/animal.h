@@ -36,10 +36,11 @@ public:
   void draw(); // todo: Draw the animal on the screen <-> window_surface_ptr.
                // Note that this function is not virtual, it does not depend
                // on the static type of the instance
-  void update();
+  virtual void update();
   virtual void move(); // todo: Animals move around, but in a different
                        // fashion depending on which type of animal
   int getPosx();
-  int getPosy();  
+  int getPosy(); 
+  std::vector<float> getDirections();
   Type getType();
 };

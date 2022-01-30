@@ -17,4 +17,8 @@ const unsigned frame_height = 900; // Height of window in pixel
 // of the screen
 const unsigned frame_boundary = 50;
 
+// Maximum eyesight distance
+const unsigned eyesight_distance = 100;
+const unsigned touch_distance = 15;
+
 enum class Type { SHEEP, WOLF, DOG };

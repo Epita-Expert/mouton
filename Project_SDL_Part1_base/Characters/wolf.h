@@ -11,4 +11,5 @@ public:
   Wolf(SDL_Surface* window_surface_ptr_);
   // Dtor
   ~Wolf();
+  void update();
 };

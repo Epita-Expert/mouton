@@ -15,7 +15,8 @@ SDL_Surface* load_surface_for(const std::string& path, SDL_Surface* window_surfa
 }
 } // namespace game
 
-Animal::Animal(const std::string& file_path, SDL_Surface* window_surface_ptr, int speed, Type type) {
+Animal::Animal(const std::string& file_path, SDL_Surface* window_surface_ptr, int speed,
+               Type type) {
 
   this->speed = speed;
   this->type = type;
@@ -86,15 +87,16 @@ void Animal::move() {
 }
 
 void Animal::update() {
-  if (this->getType() == Type::SHEEP) {
-      Sheep * sheep = dynamic_cast<Sheep*>(this);
-      sheep->update();
-  }
   this->move();
   this->draw();
 }
 
 int Animal::getPosx() { return image_position.x; }
 int Animal::getPosy() { return image_position.y; }
+std::vector<float> Animal::getDirections() {
+  return {
+    direction_x, direction_y
+  };
+}
 
 Type Animal::getType() { return type; }
