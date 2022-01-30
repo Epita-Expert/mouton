@@ -15,7 +15,9 @@ SDL_Surface* load_surface_for(const std::string& path,
 }
 } // namespace image
 
-PlayableCharacter::~PlayableCharacter() {}
+PlayableCharacter::~PlayableCharacter() {
+  SDL_FreeSurface(this->image_ptr_);
+}
 
 PlayableCharacter::PlayableCharacter(const std::string& file_path,
                                      SDL_Surface* window_surface_ptr) {
@@ -40,6 +42,11 @@ PlayableCharacter::PlayableCharacter(const std::string& file_path,
   this->image_position.w = this->image_ptr_->w;
   // the height of the rectangle will be the same as height of the image
   this->image_position.h = this->image_ptr_->h;
+
+  this->speed = 5;
+  this->image_direction = Direction::NONE;
+  this->direction_x = 0.0;
+  this->direction_y = 0.0;
 }
 
 void PlayableCharacter::handle_events(SDL_Event const& event) {
@@ -110,7 +117,12 @@ void PlayableCharacter::move() {
 }
 
 void PlayableCharacter::draw() {
-  SDL_BlitSurface(image_ptr_, nullptr, window_surface_ptr_, &image_position);
+  SDL_Rect crop, positionFond;
+  crop.x = 0;
+  crop.y = 0;
+  crop.h = this->image_ptr_->h;
+  crop.w = this->image_ptr_->w;
+  SDL_BlitSurface(this->image_ptr_, &crop, this->window_surface_ptr_, &image_position);
 }
 
 void PlayableCharacter::stop() { image_direction = Direction::NONE; }
