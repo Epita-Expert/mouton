@@ -20,8 +20,6 @@ Animal::Animal(const std::string& file_path, SDL_Surface* window_surface_ptr, in
   this->speed = speed;
   this->type = type;
   // Should be only for sheep
-  this->boost_cooldown = 0;
-  this->offspring_cooldown = 0;
   direction_x = arr[rand() % 2];
   direction_y = arr[rand() % 2];
   // InitialiZe the window_surface_ptr_ in the class
@@ -65,10 +63,6 @@ void Animal::draw() {
 void Animal::move() {
   int max_height = frame_height - frame_boundary - image_ptr_->h;
   int max_width = frame_width - frame_boundary - image_ptr_->w;
-  int boost = 1;
-  if (boost_cooldown > 0) {
-    boost = 2;
-  }
 
   if (image_position.x <= frame_boundary) {
     direction_x = -direction_x;
@@ -87,18 +81,14 @@ void Animal::move() {
     direction_y = -direction_y;
     image_position.y = max_height;
   }
-  image_position.x += direction_x * speed * boost;
-  image_position.y += direction_y * speed * boost;
+  image_position.x += direction_x * speed;
+  image_position.y += direction_y * speed;
 }
 
-void Animal::boost() { boost_cooldown = 10; }
-
 void Animal::update() {
-  if (type == Type::SHEEP) {
-    if (this->boost_cooldown > 0)
-      this->boost_cooldown--;
-    if (this->offspring_cooldown > 0)
-      this->offspring_cooldown--;
+  if (this->getType() == Type::SHEEP) {
+      Sheep * sheep = dynamic_cast<Sheep*>(this);
+      sheep->update();
   }
   this->move();
   this->draw();

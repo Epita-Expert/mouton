@@ -37,16 +37,12 @@ void Ground::update() {
       Sheep * s1 = dynamic_cast<Sheep*>(a.get());
       Sheep * s2 = dynamic_cast<Sheep*>(b.get()); 
       if (s1->getSex() == s2->getSex()) continue; // S'ils ont le meme sexe
-      if (s1->getSex() == 0 && s1->offspring_cooldown == 0) {
-        s1->offspring_cooldown = 10;
-        std::unique_ptr<Animal> sheep(new Sheep(this->window_surface_ptr_));
+      if (s1->canHaveOffspring()) {
+        std::unique_ptr<Animal> sheep = s1->getOffspring(this->window_surface_ptr_);
         this->add_animal(std::move(sheep));
-      } else if (s2->getSex() == 0 && s2->offspring_cooldown == 0) {
-        s2->offspring_cooldown = 10;
-        std::unique_ptr<Animal> sheep(new Sheep(this->window_surface_ptr_));
+      } else if (s2->canHaveOffspring()) {
+        std::unique_ptr<Animal> sheep = s2->getOffspring(this->window_surface_ptr_);
         this->add_animal(std::move(sheep));
-      } else {
-        std::cout << "[Logger] Female is recovering" << std::endl;
       }
     }
 

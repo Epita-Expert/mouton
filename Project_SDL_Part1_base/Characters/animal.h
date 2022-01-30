@@ -23,8 +23,6 @@ protected:
  
 
 public:
-  int boost_cooldown;
-  int offspring_cooldown;
   /**
    * todo: The constructor has to load the sdl_surface that corresponds to the
    * texture
@@ -41,8 +39,6 @@ public:
   void update();
   virtual void move(); // todo: Animals move around, but in a different
                        // fashion depending on which type of animal
-  void boost();
-
   int getPosx();
   int getPosy();  
   Type getType();
