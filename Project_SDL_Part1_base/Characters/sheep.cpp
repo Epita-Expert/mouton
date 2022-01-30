@@ -5,6 +5,7 @@ Sheep::Sheep(SDL_Surface* window_surface_ptr_)
   this->sex = rand() % 2;
   this->boost_cooldown = 0;
   this->offspring_cooldown = 0;
+  std::cout << "[Logger] Sheep " << this << " created" << std::endl;
 }
 
 int Sheep::getSex() { return sex; }

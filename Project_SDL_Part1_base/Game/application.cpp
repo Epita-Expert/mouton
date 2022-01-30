@@ -42,7 +42,7 @@ application::application(unsigned n_sheep, unsigned n_wolf) {
 
 
   this->movement_timer = 0;
-  std::cout << "[Logger] Application crated" << std::endl;
+  std::cout << "[Logger] Application created" << std::endl;
 }
 
 // DESTRUCTOR

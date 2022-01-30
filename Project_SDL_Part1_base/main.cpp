@@ -30,7 +30,7 @@ int main(int argc, char* argv[]) {
   {
     application my_app(std::stoul(argv[1]), std::stoul(argv[2]));
     int retval = my_app.loop(std::stoul(argv[3]));
-    std::cout << "Exiting application with code " << retval << std::endl;
+    std::cout << "[Logger] Exiting application with code " << retval << std::endl;
   }
 
   SDL_Quit();

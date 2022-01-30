@@ -19,6 +19,9 @@ Animal::Animal(const std::string& file_path, SDL_Surface* window_surface_ptr, in
 
   this->speed = speed;
   this->type = type;
+  // Should be only for sheep
+  this->boost_cooldown = 0;
+  this->offspring_cooldown = 0;
   direction_x = arr[rand() % 2];
   direction_y = arr[rand() % 2];
   // InitialiZe the window_surface_ptr_ in the class
@@ -91,14 +94,14 @@ void Animal::move() {
 void Animal::boost() { boost_cooldown = 10; }
 
 void Animal::update() {
-  // if (type == Type::SHEEP) {
-  //   if (boost_cooldown > 0)
-  //     boost_cooldown--;
-  //   if (offspring_cooldown > 0)
-  //     offspring_cooldown--;
-  // }
-  move();
-  draw();
+  if (type == Type::SHEEP) {
+    if (this->boost_cooldown > 0)
+      this->boost_cooldown--;
+    if (this->offspring_cooldown > 0)
+      this->offspring_cooldown--;
+  }
+  this->move();
+  this->draw();
 }
 
 int Animal::getPosx() { return image_position.x; }
