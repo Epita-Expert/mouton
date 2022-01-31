@@ -17,6 +17,23 @@ void Ground::add_animal(std::unique_ptr<Animal> animal) {
   this->animals.push_back(std::move(animal));
 }
 
+void Ground::game_score() {
+  this->number_of_sheep = 0;
+  this->number_of_wolf = 0;
+  for (int i = 0; i < this->animals.size(); i++) {
+    if (this->animals[i]->getType() == Type::SHEEP) {
+      this->number_of_sheep++;
+    }
+    if (this->animals[i]->getType() == Type::WOLF) {
+      this->number_of_wolf++;
+    }
+  }
+  
+  if (DEBUG) std::cout << "[DEBUG] Animals size " << (this->animals.size()) << std::endl;
+  if (DEBUG) std::cout << "[DEBUG] SHEEP " << (this->number_of_sheep) << std::endl;
+  if (DEBUG) std::cout << "[DEBUG] WOLF " << (this->number_of_wolf) << std::endl;
+}
+
 void Ground::add_playable_character(
     std::unique_ptr<PlayableCharacter> PlayableCharacter) {
   this->playableCharacters.push_back(std::move(PlayableCharacter));

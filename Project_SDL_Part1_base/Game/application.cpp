@@ -65,7 +65,6 @@ int application::loop(unsigned period) {
   //     std::make_unique<Shepherd>(this->window_surface_ptr_);
 
   while (running && (SDL_GetTicks() - start < period * 1000)) {
-
     while (SDL_PollEvent(&window_event_)) {
       shepherd->handle_events(window_event_);
       this->movement_timer = 0;
@@ -84,7 +83,6 @@ int application::loop(unsigned period) {
     if (movement_timer <= 25) {
       shepherd->move();
       shepherd->draw();
-
     } else {
       shepherd->stop();
     }
@@ -100,6 +98,6 @@ int application::loop(unsigned period) {
     count++;
     SDL_Delay(1000 / frame_rate); // Run the game at 60Hz
   }
-
+  this->playing_ground->game_score();
   return 0;
 }
