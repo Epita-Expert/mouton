@@ -12,4 +12,5 @@ public:
   // Dtor
   ~Wolf();
   void update();
+
 };

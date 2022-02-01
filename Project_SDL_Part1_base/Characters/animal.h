@@ -42,5 +42,6 @@ public:
   int getPosx();
   int getPosy(); 
   std::vector<float> getDirections();
+  void changeDirections(float dirx, float diry);
   Type getType();
 };

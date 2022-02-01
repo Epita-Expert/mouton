@@ -21,8 +21,8 @@ Animal::Animal(const std::string& file_path, SDL_Surface* window_surface_ptr, in
   this->speed = speed;
   this->type = type;
   // Should be only for sheep
-  direction_x = arr[rand() % 2];
-  direction_y = arr[rand() % 2];
+  direction_x = 1;
+  direction_y = 1;
   // InitialiZe the window_surface_ptr_ in the class
   window_surface_ptr_ = window_surface_ptr;
   // Load the texture of the animal
@@ -97,6 +97,11 @@ std::vector<float> Animal::getDirections() {
   return {
     direction_x, direction_y
   };
+}
+
+void Animal::changeDirections(float dirx, float diry) {
+  direction_x = dirx;
+  direction_y = diry;
 }
 
 Type Animal::getType() { return type; }
