@@ -58,7 +58,7 @@ void Ground::update() {
         a->changeDirections(dirx,diry);
       }
       dist = -1;
-      shortest = INT16_MAX;
+      shortest = MAXFLOAT;
     }
 
     // for (auto& b : this->animals) {
