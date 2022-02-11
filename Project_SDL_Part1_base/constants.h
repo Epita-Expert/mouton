@@ -19,6 +19,6 @@ const unsigned frame_boundary = 50;
 
 // Maximum eyesight distance
 const unsigned eyesight_distance = 100;
-const unsigned touch_distance = 15;
+const unsigned touch_distance = 40;
 
 enum class Type { SHEEP, WOLF, DOG };

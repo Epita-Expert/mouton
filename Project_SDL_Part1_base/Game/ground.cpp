@@ -35,6 +35,7 @@ void Ground::update() {
   float diry;
 
   // for (auto& a : this->animals) {
+
   for (int i = 0; i < this->animals.size(); i++) {
 
     auto& a = this->animals[i];
@@ -43,19 +44,37 @@ void Ground::update() {
       for (int j = 0; j < this->animals.size(); j++) {
         auto& c = this->animals[j];
         if (c->getType() == Type::SHEEP) {
-          dist = sqrt(pow(a->getPosx() - c->getPosx(), 2) +
-                      pow(a->getPosy() - c->getPosy(), 2));
-          if (dist < shortest) {
-            index = j;
-            shortest = dist;
+
+          if (abs(a->getPosx() - c->getPosx()) < touch_distance &&
+              abs(a->getPosy() - c->getPosy()) < touch_distance) {
+
+            this->animals.erase(this->animals.begin() + j);
+
+            if (i > j) {
+              i -= 1;
+              auto& a = this->animals[i];
+            }
+            j -= 1;
+          } else {
+
+            dist = sqrt(pow(a->getPosx() - c->getPosx(), 2) +
+                        pow(a->getPosy() - c->getPosy(), 2));
+
+            if (dist < shortest) {
+              index = j;
+              shortest = dist;
+            }
           }
         }
       }
-      
-      if (shortest != MAXFLOAT) {
-        dirx = (this->animals[index]->getPosx()-a->getPosx())/shortest;
-        diry = (this->animals[index]->getPosy() - a->getPosy())/shortest;
-        a->changeDirections(dirx,diry);
+
+      if (shortest != MAXFLOAT && index < this->animals.size()) {
+
+        std::cout << "Ligne 78: segfault occasionnel\n";
+        dirx = (this->animals[index]->getPosx() - a->getPosx()) / shortest;
+        diry = (this->animals[index]->getPosy() - a->getPosy()) / shortest;
+
+        a->changeDirections(dirx, diry);
       }
       dist = -1;
       shortest = MAXFLOAT;
@@ -65,17 +84,21 @@ void Ground::update() {
     for (int j = 0 + i; j < this->animals.size(); j++) {
       // Si c'est le meme animal
       auto& b = this->animals[j];
+
       // std::cout << "[Logger] Animal " << (a->getType() == Type::WOLF) << " and "
       //           << b.get() << std::endl;
 
-      if (a.get() == b.get())
+      if (i == j)
         continue;
 
       // S'ils se touche
-      if (abs(a->getPosx() - b->getPosx()) < touch_distance &&
-          abs(a->getPosy() - b->getPosy()) < touch_distance) {
-        // If it's 2 sheeps
-        if (a->getType() == Type::SHEEP && b->getType() == Type::SHEEP) {
+      std::cout << this->animals.size();
+
+      if (a->getType() == Type::SHEEP && b->getType() == Type::SHEEP) {
+        if (abs(a->getPosx() - b->getPosx()) < touch_distance &&
+            abs(a->getPosy() - b->getPosy()) < touch_distance) {
+          // If it's 2 sheeps
+
           std::cout << "[Logger] Sheep " << a.get() << " and " << b.get() << " have met "
                     << std::endl;
           Sheep* s1 = dynamic_cast<Sheep*>(a.get());
@@ -91,6 +114,7 @@ void Ground::update() {
             this->add_animal(std::move(sheep));
           }
         }
+
         // Kill sheep
       }
 
@@ -109,11 +133,10 @@ void Ground::update() {
                     << " have met " << std::endl;
           Sheep* sheep = dynamic_cast<Sheep*>(b.get());
           sheep->boost(b->getDirections());
-
         }
       }
     }
+    std::cout << "Ligne 146: segfault occasionnel";
     a->update();
   }
-  
 }
