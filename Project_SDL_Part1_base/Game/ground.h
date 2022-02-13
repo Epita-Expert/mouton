@@ -23,13 +23,12 @@ private:
   SDL_Surface* window_surface_ptr_;
 
   // Some attribute to store all the wolves and sheeps
-  int number_of_sheep;
-  int number_of_wolf;
   std::vector<std::unique_ptr<Animal>> animals;
-
   std::vector<std::unique_ptr<PlayableCharacter>> playableCharacters;
 
 public:
+  int number_of_sheep;
+  int number_of_wolf;
   void game_score();
   Ground(SDL_Surface* window_surface_ptr); // todo: Ctor
   ~Ground(); // todo: Dtor, again for clean up (if necessary)

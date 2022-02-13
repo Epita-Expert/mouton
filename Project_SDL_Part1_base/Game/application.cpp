@@ -21,11 +21,11 @@ application::application(unsigned n_sheep, unsigned n_wolf) {
     return;
   }
 
-  // // Put the window in the right color
+  // Put the window in the right color
   SDL_FillRect(this->window_surface_ptr_, NULL,
                SDL_MapRGB(this->window_surface_ptr_->format, 153, 255, 51));
 
-  // // Instanciation of ground
+  // Instanciation of ground
   std::unique_ptr<Ground> playing_ground(new Ground(this->window_surface_ptr_));
   this->playing_ground = std::move(playing_ground);
 
@@ -59,6 +59,11 @@ int application::loop(unsigned period) {
   bool running = true;
   int count = 0;
 
+  TTF_Init();
+  TTF_Font* font = TTF_OpenFont("../font/Arial.ttf", 32);
+  SDL_Color couleurNoir = { 0, 0, 0 };
+  SDL_Surface* textSurface = NULL;
+
   // make a playable character
   std::unique_ptr<Shepherd> shepherd(new Shepherd(this->window_surface_ptr_));
   // std::unique_ptr<Shepherd> shepherd =
@@ -86,9 +91,17 @@ int application::loop(unsigned period) {
     } else {
       shepherd->stop();
     }
-
     shepherd->draw();
 
+    this->playing_ground->game_score();
+    std::string var = std::to_string(this->playing_ground->number_of_sheep) + " Sheeps /" + std::to_string(this->playing_ground->number_of_wolf) + " Wolfs";
+    textSurface = TTF_RenderText_Blended(font, var.c_str(), couleurNoir);
+    
+    SDL_Rect position;
+    position.x = 10;
+    position.y = 10;
+    SDL_BlitSurface(textSurface, NULL, this->window_surface_ptr_, &position); /* Blit du texte */
+    
     // update the window
     SDL_UpdateWindowSurface(this->window_ptr_);
 
@@ -99,5 +112,8 @@ int application::loop(unsigned period) {
     SDL_Delay(1000 / frame_rate); // Run the game at 60Hz
   }
   this->playing_ground->game_score();
+  TTF_CloseFont(font);
+  TTF_Quit();
+  SDL_FreeSurface(textSurface);
   return 0;
 }

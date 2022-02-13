@@ -61,14 +61,12 @@ int main(int argc, char* argv[]) {
       abort();
     }
 
-  init();
-  {
+  init(); {
     application my_app(std::stoul(argv[optind]), std::stoul(argv[optind++]));
     int retval = my_app.loop(std::stoul(argv[optind++]));
     std::cout << "[INFO] Exiting application with code " << retval << std::endl;
   }
 
   SDL_Quit();
-
   return 0;
 }

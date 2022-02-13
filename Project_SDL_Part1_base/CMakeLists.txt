@@ -35,10 +35,19 @@ ELSE()
     set (CMAKE_CXX_STANDARD 14)
     SET(SDL2_IMAGE_LIBRARY "/usr/local/Cellar/sdl2_image/2.0.5/lib/libSDL2_image.dylib")
     SET(SDL2_IMAGE_INCLUDE_DIR "/usr/local/Cellar/sdl2_image/2.0.5/include/SDL2")
+
+  # sdl2_ttf - quick fix for macOS with standard homebrew install (brew install sdl2_ttf)
+    SET(SDL2_TTF_LIBRARY "/usr/local/Cellar/sdl2_ttf/2.0.18_1/lib/libSDL2_ttf.dylib")
+    SET(SDL2_TTF_INCLUDE_DIR "/usr/local/Cellar/sdl2_ttf/2.0.18_1/include/SDL2")
+
     INCLUDE(FindPackageHandleStandardArgs)
-    FIND_PACKAGE_HANDLE_STANDARD_ARGS(sdl2_image REQUIRED_VARS SDL2_IMAGE_LIBRARY SDL2_IMAGE_INCLUDE_DIR)
+    FIND_PACKAGE_HANDLE_STANDARD_ARGS(sdl2_image REQUIRED_VARS SDL2_IMAGE_LIBRARY SDL2_IMAGE_INCLUDE_DIR SDL2_TTF_LIBRARY SDL2_TTF_INCLUDE_DIR)
+    
     include_directories(${SDL2_IMAGE_INCLUDE_DIR})
-    set(CMAKE_CXX_FLAGS "-L/usr/local/Cellar/sdl2_image/2.0.5/lib -I/usr/local/Cellar/sdl2_image/2.0.5/include -lSDL2 -lSDL2_image")
+    include_directories(${SDL2_TTF_INCLUDE_DIR})
+
+    set(CMAKE_CXX_FLAGS "-L/usr/local/Cellar/sdl2_image/2.0.5/lib -I/usr/local/Cellar/sdl2_image/2.0.5/include -L/usr/local/Cellar/sdl2_ttf/2.0.18_1/lib -I/usr/local/Cellar/sdl2_ttf/2.0.18_1/include -lSDL2 -lSDL2_image -lSDL2_ttf")
+    
     # sdl2_image - end of quick fix
   ELSE()
     find_package(SDL2_image REQUIRED)
