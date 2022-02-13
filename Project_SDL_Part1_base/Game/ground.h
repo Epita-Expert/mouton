@@ -29,10 +29,10 @@ private:
 public:
   int number_of_sheep;
   int number_of_wolf;
-  void game_score();
   Ground(SDL_Surface* window_surface_ptr); // todo: Ctor
   ~Ground(); // todo: Dtor, again for clean up (if necessary)
-  void add_animal(std::unique_ptr<Animal> animal); // todo: Add an animal
+  void add_animal(std::unique_ptr<Animal> animal, Type); // todo: Add an animal
+  void numberOfAnimals(Type); // count number of specific animal
   void
   add_playable_character(std::unique_ptr<PlayableCharacter> playableCharacter);
   void update(); // todo: "refresh the screen": Move animals and draw them

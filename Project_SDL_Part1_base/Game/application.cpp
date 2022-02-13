@@ -28,19 +28,22 @@ application::application(unsigned n_sheep, unsigned n_wolf) {
   // Instanciation of ground
   std::unique_ptr<Ground> playing_ground(new Ground(this->window_surface_ptr_));
   this->playing_ground = std::move(playing_ground);
+  // init the number of animals
+  this->playing_ground->number_of_sheep = 0;
+  this->playing_ground->number_of_wolf = 0;
 
   // Loop to instance all the sheeps
   for (int i = 0; i < n_sheep; i++) {
     // std::unique_ptr<Animal> sheep = std::make_unique<Sheep>(this->window_surface_ptr_);
     std::unique_ptr<Animal> sheep(new Sheep(this->window_surface_ptr_));
-    this->playing_ground->add_animal(std::move(sheep));
+    this->playing_ground->add_animal(std::move(sheep), Type::SHEEP);
   }
 
   // Loop to instance all the wolves
   for (int i = 0; i < n_wolf; i++) {
     // std::unique_ptr<Animal> wolf = std::make_unique<Wolf>(this->window_surface_ptr_);
     std::unique_ptr<Animal> wolf(new Wolf(this->window_surface_ptr_));
-    this->playing_ground->add_animal(std::move(wolf));
+    this->playing_ground->add_animal(std::move(wolf), Type::WOLF);
   }
 
   this->movement_timer = 0;
@@ -95,7 +98,8 @@ int application::loop(unsigned period) {
     SDL_Delay(1000 / frame_rate); // Run the game at 60Hz
   }
   // dislay score in terminal
-  this->playing_ground->game_score();
+  std::string score = std::to_string(this->playing_ground->number_of_sheep) + " Sheeps / " + std::to_string(this->playing_ground->number_of_wolf) + " Wolfs";
+  std::cout << "[Game score]: " << score.c_str() << "\n";
 
   TTF_CloseFont(this->font);
   SDL_FreeSurface(this->textSurface);
@@ -103,17 +107,16 @@ int application::loop(unsigned period) {
 }
 
 void application::setGameScore() {
-    this->playing_ground->game_score();
-    std::string var = std::to_string(this->playing_ground->number_of_sheep) + " Sheeps /" + std::to_string(this->playing_ground->number_of_wolf) + " Wolfs";
-    this->textSurface = TTF_RenderText_Blended(this->font, var.c_str(), this->blackColor);
-    
-    // set text position
-    this->position.x = 10;
-    this->position.y = 10;
-    
-    /* Blit of text */
-    SDL_BlitSurface(this->textSurface, NULL, this->window_surface_ptr_, &this->position);
-    
-    // update the window
-    SDL_UpdateWindowSurface(this->window_ptr_);
+  std::string score = std::to_string(this->playing_ground->number_of_sheep) + " Sheeps / " + std::to_string(this->playing_ground->number_of_wolf) + " Wolfs";
+  this->textSurface = TTF_RenderText_Blended(this->font, score.c_str(), this->blackColor);
+  
+  // set text position
+  this->position.x = 10;
+  this->position.y = 10;
+  
+  /* Blit of text */
+  SDL_BlitSurface(this->textSurface, NULL, this->window_surface_ptr_, &this->position);
+  
+  // update the window
+  SDL_UpdateWindowSurface(this->window_ptr_);
 }
