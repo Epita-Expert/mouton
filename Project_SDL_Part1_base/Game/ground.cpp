@@ -12,9 +12,18 @@ Ground::~Ground() {
   // delete &animals;
 }
 
-void Ground::add_animal(std::unique_ptr<Animal> animal) {
+void Ground::add_animal(std::unique_ptr<Animal> animal, Type type) {
   // Add the type animal to the dynamic array
+  this->numberOfAnimals(type);
   this->animals.push_back(std::move(animal));
+}
+
+void Ground::numberOfAnimals(Type type) {
+  if (type == Type::SHEEP) {
+    this->number_of_sheep++;
+  } else if (type == Type::WOLF) {
+    this->number_of_wolf++;
+  }
 }
 
 void Ground::add_playable_character(
@@ -55,10 +64,10 @@ void Ground::update() {
           }
           if (s1->canHaveOffspring()) {
             std::unique_ptr<Animal> sheep = s1->getOffspring(this->window_surface_ptr_);
-            this->add_animal(std::move(sheep));
+            this->add_animal(std::move(sheep), Type::SHEEP);
           } else if (s2->canHaveOffspring()) {
             std::unique_ptr<Animal> sheep = s2->getOffspring(this->window_surface_ptr_);
-            this->add_animal(std::move(sheep));
+            this->add_animal(std::move(sheep), Type::SHEEP);
           }
         } 
         // Kill sheep

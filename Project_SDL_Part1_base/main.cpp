@@ -15,9 +15,15 @@ void init() {
   // Initialize PNG loading
   int imgFlags = IMG_INIT_PNG;
   if (!(IMG_Init(imgFlags) & imgFlags))
-    throw std::runtime_error("init(): SDL_image could not initialize! "
+    throw std::runtime_error("init(): SDL_image could not be initialized! "
                              "SDL_image Error: " +
                              std::string(IMG_GetError()));
+
+  // Initialize TTF
+  if (TTF_Init() < 0)
+    throw std::runtime_error("init(): TTF could not be initialized! "
+                             "TTF Error: " +
+                             std::string(TTF_GetError()));
   if (DEBUG) std::cout << "[DEBUG] SDL initialized" << std::endl;
 }
 
@@ -61,14 +67,13 @@ int main(int argc, char* argv[]) {
       abort();
     }
 
-  init();
-  {
+  init(); {
     application my_app(std::stoul(argv[optind]), std::stoul(argv[optind++]));
     int retval = my_app.loop(std::stoul(argv[optind++]));
     std::cout << "[INFO] Exiting application with code " << retval << std::endl;
   }
-
+  
+  TTF_Quit();
   SDL_Quit();
-
   return 0;
 }
