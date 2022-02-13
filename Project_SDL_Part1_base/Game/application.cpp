@@ -57,13 +57,9 @@ application::~application() {
 int application::loop(unsigned period) {
   auto start = SDL_GetTicks();
   bool running = true;
-  int count = 0;
-
-  TTF_Init();
-  TTF_Font* font = TTF_OpenFont("../font/Arial.ttf", 32);
-  SDL_Color couleurNoir = { 0, 0, 0 };
-  SDL_Surface* textSurface = NULL;
-
+  this->font = TTF_OpenFont("../font/Arial.ttf", 32);
+  this->blackColor = { 0, 0, 0 };
+  
   // make a playable character
   std::unique_ptr<Shepherd> shepherd(new Shepherd(this->window_surface_ptr_));
   // std::unique_ptr<Shepherd> shepherd =
@@ -92,28 +88,32 @@ int application::loop(unsigned period) {
       shepherd->stop();
     }
     shepherd->draw();
+    
+    this->setGameScore();
 
+    movement_timer++;
+    SDL_Delay(1000 / frame_rate); // Run the game at 60Hz
+  }
+  // dislay score in terminal
+  this->playing_ground->game_score();
+
+  TTF_CloseFont(this->font);
+  SDL_FreeSurface(this->textSurface);
+  return 0;
+}
+
+void application::setGameScore() {
     this->playing_ground->game_score();
     std::string var = std::to_string(this->playing_ground->number_of_sheep) + " Sheeps /" + std::to_string(this->playing_ground->number_of_wolf) + " Wolfs";
-    textSurface = TTF_RenderText_Blended(font, var.c_str(), couleurNoir);
+    this->textSurface = TTF_RenderText_Blended(this->font, var.c_str(), this->blackColor);
     
-    SDL_Rect position;
-    position.x = 10;
-    position.y = 10;
-    SDL_BlitSurface(textSurface, NULL, this->window_surface_ptr_, &position); /* Blit du texte */
+    // set text position
+    this->position.x = 10;
+    this->position.y = 10;
+    
+    /* Blit of text */
+    SDL_BlitSurface(this->textSurface, NULL, this->window_surface_ptr_, &this->position);
     
     // update the window
     SDL_UpdateWindowSurface(this->window_ptr_);
-
-    // Print every render the number of render
-    // std::cout << "Window updated " << count << "times" << std::endl;
-    movement_timer++;
-    count++;
-    SDL_Delay(1000 / frame_rate); // Run the game at 60Hz
-  }
-  this->playing_ground->game_score();
-  TTF_CloseFont(font);
-  TTF_Quit();
-  SDL_FreeSurface(textSurface);
-  return 0;
 }

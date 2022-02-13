@@ -11,6 +11,12 @@ private:
   SDL_Surface* window_surface_ptr_;
   SDL_Event window_event_;
 
+  // Set score ui
+  TTF_Font* font;
+  SDL_Color blackColor;
+  SDL_Surface* textSurface;
+  SDL_Rect position;
+
   // Other attributes here, for example an instance of ground
   std::unique_ptr<Ground> playing_ground;
   int movement_timer;
@@ -25,4 +31,5 @@ public:
                              // See SDL_GetTicks() and SDL_Delay() to enforce a
                              // duration the application should terminate after
                              // 'period' seconds
+  void setGameScore(); // set game score and display it - Used in the loop
 };
